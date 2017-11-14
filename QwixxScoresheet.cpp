@@ -1,4 +1,4 @@
-include "GameDetails.h"
+#include "GameDetails.h"
 
 class qwixxscoresheet: ScoreSheet {
 	
