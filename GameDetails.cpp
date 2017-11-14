@@ -11,3 +11,12 @@
  */
 
 #include "GameDetails.h"
+
+Dice::ostream& operator<< (ostream& os, const Dice&) {
+	os << Dice.face << "\n";
+	return os;
+}
+void Dice::roll() {
+	int tmp = RandomDice::distribution(gen);
+	this->face = tmp;
+}

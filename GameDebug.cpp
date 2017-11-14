@@ -1,6 +1,6 @@
 /*
  * =================================
- * File: qwixxscoresheet.cpp
+ * File: GameDebug.cpp
  * 
  * Authors: 
  * Jordan Stanley (7432058)
@@ -10,8 +10,9 @@
  * =================================
  */
  
-#include "GameDetails.h"
-
-class qwixxscoresheet: ScoreSheet {
-	
-}
+ #include <iostream>
+ #include "GameDetails.h"
+ 
+ int main() {
+	 
+ }
