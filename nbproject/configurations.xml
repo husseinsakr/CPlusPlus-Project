@@ -6,6 +6,7 @@
       <in>Game.h</in>
       <in>GameDetails.cpp</in>
       <in>QwintoScoresheet.cpp</in>
+      <in>QwintoScoresheet.h</in>
       <in>QwixxScoresheet.cpp</in>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -34,7 +35,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>echo build</buildCommand>
           <cleanCommand>echo clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>nbproject\private\tools\localhost\Cygwin\gcc.exe</executablePath>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
@@ -48,6 +49,8 @@
       <item path="GameDetails.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="QwintoScoresheet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="QwintoScoresheet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="QwixxScoresheet.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -4,9 +4,11 @@
     <df root="." name="0">
       <in>Game.cpp</in>
       <in>Game.h</in>
+      <in>GameDebug.cpp</in>
       <in>GameDetails.cpp</in>
       <in>GameDetails.h</in>
       <in>QwintoScoresheet.cpp</in>
+      <in>QwintoScoresheet.h</in>
       <in>QwixxScoresheet.cpp</in>
     </df>
   </logicalFolder>
