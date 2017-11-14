@@ -19,7 +19,7 @@
 
 using std::string; using std::vector;
 
-enum class Colour {RED, YELLOW, GREEN, BLUE, WHITE};
+enum class Colour {RED, YELLOW, BLUE, GREEN, WHITE};
 
 struct RandomDice{
 	static constexpr int lowerBound = 1;
