@@ -12,11 +12,16 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+#include <iostream>
+
+using std::cout; 
+using std::endl;
 
 class Player {
     int* rollDice(int numberOfRolls); //method to roll dice | need to figure out colour coded dice
     void setPlayerName(String name);
     string getPlayerName();
+    Player(String name);
 private:
     string playerName;
 

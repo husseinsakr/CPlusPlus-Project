@@ -17,18 +17,18 @@ using std::string;
 using std::ostream;
 using std::vector;
 
-class QwintoScoresheet {
+class QwintoScoresheet: ScoreSheet {
 public:
     void print(ostream &out);
-    enum class Colour{RED, YELLOW, BLUE};
     void score(vector<Dice> score, Colour color, int position);
+    QwintoScoresheet(String playerName);
 private:
-    int numberOfFailedAttempts;
-    string playerName;
-    int overallScore;
+    constexpr int numberOfRows = 3; 
+    constexpr int numberOfColumns = 5;
+    long scoreSheet[numberOfRows][numberOfColumns];
     int redScore;
     int yellowScore;
-    int blueScore;
+    int blueScore; 
 };
 
 #endif /* QWINTOSCORESHEET_H */
