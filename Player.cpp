@@ -1,6 +1,6 @@
 /*
  * =================================
- * File: Game.h
+ * File: Player.cpp
  * 
  * Authors: 
  * Jordan Stanley (7432058)
@@ -10,23 +10,4 @@
  * =================================
  */
 
-#ifndef GAME_H
-#define GAME_H
-
-class Game {
-
-
-
-
-
-};
-
-
-class Player {
-
-
-
-};
-
-#endif /* GAME_H */
-
+#include "Player.h"

@@ -15,14 +15,15 @@
 
 class ScoreSheet {
 protected:
-	string namePlayer;
-	int numFailed;
-	int overallScore;
-        int numberOfRows;
-        int numberOfColumns;
+	int numberOfFailedThrows; //number of failed throws by player
+	int overallScore; //score of player, current and final
+        int numberOfRows; //number of rows in scoresheet, will be used in multidimensional arrays
+        int numberOfColumns; //number of columns in scoresheet, will be used in multidimensional arrays
 	
-	bool score( int&, RollOfDice, Colour::colour, int position = -1) = 0;
-        void populateScoreSheet(long scoreSheet[][]);
+	bool score( int& RollOfDice, Colour::colour, int position = -1) = 0;
+        void populateScoreSheet(long scoreSheet[][]); //originates the first ever scoreSheet
+        
+        // setters and getters for numberOfRows and numberOfColumns
         void setNumberOfRows(int numberOfRows);
         int getNumberOfRows();
         void setNumberOfColumns(int numberOfColumns);
