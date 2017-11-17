@@ -10,6 +10,8 @@
       <in>QwintoScoresheet.cpp</in>
       <in>QwintoScoresheet.h</in>
       <in>QwixxScoresheet.cpp</in>
+      <in>ScoreSheet.cpp</in>
+      <in>ScoreSheet.h</in>
     </df>
   </logicalFolder>
   <projectmakefile></projectmakefile>

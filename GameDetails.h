@@ -32,8 +32,6 @@ struct Dice {
 	int face;
 	void roll();
 	friend ostream& operator<< (ostream& os, const Dice&);
-	
-	
 };
 
 class RollOfDice {
@@ -46,21 +44,6 @@ public:
 	
 };
 
-class ScoreSheet {
-protected:
-	string namePlayer;
-	int numFailed;
-	int overallScore;
-	
-	bool score( int&, RollOfDice, Colour::colour, int position = -1) = 0;
-public:
-	virtual ~ScoreSheet(){}
-	int calcTotal() = 0;
-	virtual bool operator!() const = 0;
-	virtual int setTotal() = 0;
-	friend ostream& operator<< (ostream& os, const ScoreSheet& scoreSheet) = 0;
-	virtual ostream& print(ostream& os) const = 0;
-};
 
 class QwintoScoreSheet: ScoreSheet {
 public:
