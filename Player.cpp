@@ -20,7 +20,7 @@ string Player::getPlayerName(){
     return playerName;
 }
 
-Player::Player(String name) {
+Player::Player(string name) {
     if (name != null) //gonna assume the user will not give it non letters
         setPlayerName(name);
     else
