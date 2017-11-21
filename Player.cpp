@@ -12,7 +12,7 @@
 
 #include "Player.h"
 
-void Player::setPlayerName(String name){
+void Player::setPlayerName(string name){
     playerName = name;
 }
 
@@ -20,10 +20,10 @@ string Player::getPlayerName(){
     return playerName;
 }
 
-Player::Player(String name) {
-    if (name != null) //gonna assume the user will not give it non letters
+Player::Player(string name) {
+    //if (name != null) //gonna assume the user will not give it non letters
         setPlayerName(name);
-    else
-        cout << "Player name must only have letters!" << endl;
+    //else
+        //cout << "Player name must only have letters!" << endl;
 
 }

@@ -2,3 +2,4 @@
 /build/
 Makefile
 .dep.inc
+/dist/
