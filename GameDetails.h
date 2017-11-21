@@ -41,33 +41,4 @@ public:
 	RollOfDice pair(Dice& one, Dice& two);	
 };
 
-class ScoreSheet {
-protected:
-	string namePlayer;
-	int numFailed;
-	int overallScore;
-	
-	virtual bool score( int&, RollOfDice, Colour colour, int position = -1) = 0;
-public:
-	virtual ~ScoreSheet(){}
-	virtual int calcTotal() = 0;
-	virtual bool operator!() const;
-	virtual int setTotal() = 0;
-	friend std::ostream& operator<< (std::ostream& os, const ScoreSheet& scoreSheet);
-	virtual std::ostream& print(std::ostream& os) const = 0;
-};
-
-class QwintoScoreSheet: ScoreSheet {
-public:
-	friend std::ostream& operator<<(std::ostream& os, const QwintoScoreSheet& qwintoscoresheet);
-	virtual std::ostream& print(std::ostream& os) const; 
-};
-
-class QwixxScoreSheet: ScoreSheet {
-public:
-	friend std::ostream& operator<<(std::ostream& os, const QwintoScoreSheet& qwixxscoresheet);
-	virtual std::ostream& print(std::ostream& os) const;
-	
-};
-
 #endif /* GAME_DETAILS */

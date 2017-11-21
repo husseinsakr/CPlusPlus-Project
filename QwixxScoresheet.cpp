@@ -10,8 +10,5 @@
  * =================================
  */
  
-#include "GameDetails.h"
+#include "QwixxScoresheet.h"
 
-class qwixxscoresheet: ScoreSheet {
-	
-};

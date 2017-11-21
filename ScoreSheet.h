@@ -34,7 +34,7 @@ protected:
         int getOverallScore();
 public:
 	virtual ~ScoreSheet(){}
-	int calcTotal() = 0;
+	virtual int calcTotal() = 0;
 	virtual bool operator!() const = 0;
 	virtual int setTotal() = 0;
 	friend std::ostream& operator<< (std::ostream& os, const ScoreSheet& scoreSheet);
