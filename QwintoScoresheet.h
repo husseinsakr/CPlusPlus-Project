@@ -22,8 +22,6 @@ public:
     void print(ostream &out);
     void score(vector<Dice> score, Colour color, int position);
     QwintoScoresheet(String playerName);
-    friend std::ostream& operator<<(std::ostream& os, const QwintoScoreSheet& qwintoscoresheet);
-    virtual std::ostream& print(std::ostream& os) const; 
 private:
     constexpr int numberOfRows = 3; 
     constexpr int numberOfColumns = 5;
@@ -31,7 +29,6 @@ private:
     int redScore;
     int yellowScore;
     int blueScore; 
-    void populateScoreSheet(long &scoreSheet);
 };
 
 #endif /* QWINTOSCORESHEET_H */

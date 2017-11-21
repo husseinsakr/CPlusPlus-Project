@@ -10,9 +10,14 @@
  * =================================
  */
 
+#include <iostream>
+#include <random>
 #include "GameDetails.h"
 
-std::ostream& operator<< (std::ostream& os, const Dice& dice) {
+using std::ostream; using std::endl;
+
+//Function implementation for Dice class
+ostream& operator<< (ostream& os, const Dice& dice) {
 	os << dice.face;
 	return os;
 }
@@ -23,7 +28,9 @@ void Dice::roll() {
 	int tmp = dis(gen);
 	this->face = tmp;
 }
-RollOfDice::operator int() const {
+
+//Function implementation for RollOfDice class
+RollOfDice::operator int() const{
 	int result = 0;
 	for (Dice d : diceVec) {
 		result += d.face;
@@ -31,7 +38,7 @@ RollOfDice::operator int() const {
 	return result;
 }
 void RollOfDice::roll() {
-	for (Dice d : diceVec) {
+	for (Dice& d : diceVec) {
 		d.Dice::roll();
 	}
 }
@@ -40,4 +47,12 @@ RollOfDice RollOfDice::pair(Dice& one, Dice& two) {
 	diceVec.push_back(one);
 	diceVec.push_back(two);
 	return rd;
+}
+ostream& operator<< (ostream& os, RollOfDice& rd) {
+	int i = 1;
+	for (Dice d : rd.diceVec) {
+		os << "Dice " << i << " rolled: " << d.face << endl;
+		i++;
+	}
+	return os;
 }

@@ -13,19 +13,20 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <iostream>
-#include <string>
 
-using std::cout; 
-using std::endl;
-using std::string;
+using std::cout; using std::endl;
 
 class Player {
     int* rollDice(int numberOfRolls); //method to roll dice | need to figure out colour coded dice
-    void setPlayerName(string name);
+    void setPlayerName(String name);
     string getPlayerName();
-    Player(string name);
+    Player(String name);
 private:
     string playerName;
+
+
+
+
 };
 
 

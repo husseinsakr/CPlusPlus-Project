@@ -1,6 +1,6 @@
 /*
  * =================================
- * File: qwixxscoresheet.cpp
+ * File: Game.h
  * 
  * Authors: 
  * Jordan Stanley (7432058)
@@ -9,9 +9,24 @@
  * hsakr011@uottawa.ca
  * =================================
  */
- 
-#include "GameDetails.h"
 
-class qwixxscoresheet: ScoreSheet {
-	
-}
+#ifndef GAME_H
+#define GAME_H
+
+class Game {
+
+
+
+
+
+};
+
+
+class Player {
+
+
+
+};
+
+#endif /* GAME_H */
+

@@ -17,10 +17,10 @@ class ScoreSheet {
 protected:
 	int numberOfFailedThrows; //number of failed throws by player
 	int overallScore; //score of player, current and final
-        //virtual int numberOfRows; //number of rows in Scoresheet, will be used in multidimensional arrays
-        //virtual int numberOfColumns; //number of columns in Scoresheet, will be used in multidimensional arrays
+        virtual int numberOfRows; //number of rows in Scoresheet, will be used in multidimensional arrays
+        virtual int numberOfColumns; //number of columns in Scoresheet, will be used in multidimensional arrays
         string playerName; //stores player name in Scoresheet
-        //virtual long scoreSheet[][]; //scoresheet 
+        virtual long scoreSheet[][]; //scoresheet 
 	
 	bool score( int& RollOfDice, Colour::colour, int position = -1) = 0;
         virtual void populateScoreSheet(long &scoreSheet); //originates the first ever scoreSheet
@@ -34,11 +34,11 @@ protected:
         int getOverallScore();
 public:
 	virtual ~ScoreSheet(){}
-	virtual int calcTotal() = 0;
+	int calcTotal() = 0;
 	virtual bool operator!() const = 0;
 	virtual int setTotal() = 0;
-	friend std::ostream& operator<< (std::ostream& os, const ScoreSheet& scoreSheet);
-	virtual std::ostream& print(std::ostream& os) const = 0;
+	friend ostream& operator<< (ostream& os, const ScoreSheet& scoreSheet) = 0;
+	virtual ostream& print(ostream& os) const = 0;
 };
 
 

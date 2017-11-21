@@ -9,4 +9,8 @@
  * hsakr011@uottawa.ca
  * =================================
  */
-#include "QwintoScoresheet.h"
+#include "GameDetails.h"
+
+class qwintoscoresheet : ScoreSheet {
+
+}
