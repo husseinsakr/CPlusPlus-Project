@@ -75,4 +75,21 @@ public:
 
 };
 
+
+template <typename T>
+class QwintoRow {
+	int a[12];
+public:
+	bool validate(int index) const;
+	int& operator[] (int index) const;
+	template <typename U>
+	friend std::ostream& operator<< <> (std::ostream& os, const QwintoRow <T>& obj);
+		
+};
+template <class T, Colour colour>
+class QwixxRow {
+public:
+
+};
+
 #endif /* GAME_DETAILS */

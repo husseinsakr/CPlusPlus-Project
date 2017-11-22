@@ -56,3 +56,21 @@ ostream& operator<< (ostream& os, RollOfDice& rd) {
 	}
 	return os;
 }
+QwintoRow<Colour>::int& operator[](int index) const {
+	return a[index];
+}
+QwintoRow<Colour>::bool validate(int index) const {
+	//False when the index is outside the preset max length of 12
+	//for QwintoRow
+	return index <= 12; 
+}
+template <typename T>
+std::ostream& operator<< (std::ostream& os, const QwintoRow<T>& obj) {
+	//loop through QwintoRow array which contains RollofDice entries
+	//and print the value based on int conversion
+	for (RollOfDice r : QwintoRow<Colour>.a) {
+		os << static_cast<int> r << ' ';
+	}
+	os << endl;
+	
+}
