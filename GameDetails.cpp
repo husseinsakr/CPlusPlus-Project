@@ -56,21 +56,28 @@ ostream& operator<< (ostream& os, RollOfDice& rd) {
 	}
 	return os;
 }
-QwintoRow<Colour>::int& operator[](int index) const {
-	return a[index];
+template <typename Colour>
+int& QwintoRow<Colour>::operator[] (int index) const { 
+    //subscript operator [] returns memory location of array at certain index 
+    if (validate(index))
+        return array[index];
+    else
+        cout << "Cannot make this insertion! Index out of bounds!" << endl;
 }
-QwintoRow<Colour>::bool validate(int index) const {
-	//False when the index is outside the preset max length of 12
-	//for QwintoRow
-	return index <= 12; 
+
+template <typename Colour>
+bool QwintoRow<Colour>::validate(int index) const{
+    //method that validates if you can insert a rollOfDice to fixed array
+    return index <= numberOfColumns;
 }
-template <typename T>
-std::ostream& operator<< (std::ostream& os, const QwintoRow<T>& obj) {
-	//loop through QwintoRow array which contains RollofDice entries
-	//and print the value based on int conversion
-	for (RollOfDice r : QwintoRow<Colour>.a) {
-		os << static_cast<int> r << ' ';
-	}
-	os << endl;
-	
-}
+
+template <typename Colour>
+ostream &operator<< (ostream &os, QwintoRow<Colour> &obj) {
+    //loop through QwintoRow array which contains RollofDice entries
+    //and print the value based on int conversion
+    for (RollOfDice r : obj.array){ 
+        os << static_cast<int>(r) << " ";
+    }
+    os << endl;
+    return os;
+ }
