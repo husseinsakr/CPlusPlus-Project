@@ -27,8 +27,6 @@ protected:
 	virtual bool score(int &RollOfDice, Colour colour, int position = -1); //enters score
         virtual int setTotal(); //sets and returns the points for the final score
         virtual int calcTotal(); //helper method for setTotal
-public:
-
 };
 
 #endif /* SCORESHEET_H */

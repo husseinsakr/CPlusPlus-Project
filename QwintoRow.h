@@ -17,7 +17,6 @@
 
 template <Colour colour> 
 class QwintoRow { 
-    Colour color;
     public:
         int arrayOfRolls[12];
         int &operator[] (int index) const;
