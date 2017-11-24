@@ -1,14 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   RollOfDice.cpp
- * Author: Hussein
+ * =================================
+ * File: RollOfDice.cpp
  * 
- * Created on November 23, 2017, 6:57 PM
+ * Authors: 
+ * Jordan Stanley (7432058)
+ * jstan064@uottawa.ca
+ * Hussein Sakr (7897706)
+ * hsakr011@uottawa.ca
+ * =================================
  */
 
 #include "RollOfDice.h"

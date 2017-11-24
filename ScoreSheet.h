@@ -1,14 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   ScoreSheet.h
- * Author: Hussein
- *
- * Created on November 21, 2017, 3:24 PM
+ * =================================
+ * File: ScoreSheet.h
+ * 
+ * Authors: 
+ * Jordan Stanley (7432058)
+ * jstan064@uottawa.ca
+ * Hussein Sakr (7897706)
+ * hsakr011@uottawa.ca
+ * =================================
  */
 
 #ifndef SCORESHEET_H
