@@ -18,10 +18,10 @@
 #include "AllIncludes.h"
 
 struct Dice {
-	const Colour colour;
-	int face;
-	friend ostream &operator<< (ostream &os, const Dice &dice);
-	void roll();	
+	const Colour colour; //colour of dice
+	int face; //face of dice
+	friend ostream &operator<< (ostream &os, const Dice &dice); //prints face of dice
+	void roll(); //changes face of dice between 1 and 6
 };
 
 

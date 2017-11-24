@@ -19,7 +19,7 @@ class RollOfDice {
 	vector<Dice> diceVec;
 public:
 	operator int() const;
-	void roll();
+	void roll(); //calls roll on all the dice in the container
 	RollOfDice pair(Dice& one, Dice& two);	
 	friend ostream &operator<< (ostream& os, RollOfDice &rd);
 };

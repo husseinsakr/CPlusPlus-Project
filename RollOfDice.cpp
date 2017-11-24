@@ -22,7 +22,7 @@ RollOfDice::operator int() const{
 }
 void RollOfDice::roll() {
 	for (Dice &d : diceVec) {
-		d.Dice::roll();
+		d.roll(); //should be d.roll()
 	}
 }
 RollOfDice RollOfDice::pair(Dice& one, Dice& two) {

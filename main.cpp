@@ -23,20 +23,22 @@ int main() {
 	 
 	
     //Testing Dice::roll()	
-    D1.roll();
-    cout << "D1 roll is: " << D1 << endl;
-    D1.roll();
-    cout << "D1 roll is: " << D1 << endl;
+    //D1.roll();
+    //cout << "D1 roll is: " << D1 << endl;
+    //D1.roll();
+    //cout << "D1 roll is: " << D1 << endl;
 	 
-    D2.roll();
-    cout << "D2 roll is: " << D2 << endl;
-    D2.roll();
-    cout << "D2 roll is: " << D2 << endl;
+    //D2.roll();
+    //cout << "D2 roll is: " << D2 << endl;
+    //D2.roll();
+    //cout << "D2 roll is: " << D2 << endl;
 	 
     //testing rollofdice 
     RollOfDice rd;
     rd.pair(D1, D2);
     rd.roll();
+    cout << "D1 roll is after pairing" << D1 << endl;
+    cout << "D2 roll is after pairing" << D2 << endl;
     int rollDice = static_cast<int>(rd);
     cout << "calling casting to int operator:" << endl;
     cout << rollDice << endl;
@@ -44,6 +46,7 @@ int main() {
     cout << rd << endl;
     
     QwintoRow<Colour::RED> row;
+    
     //row[2] = rd;
     //QwintoScoreSheet scoreSheet = {0, 0, "Hussein"};
     //QwintoScoreSheet qwintoScoreSheet;
