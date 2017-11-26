@@ -18,10 +18,23 @@
 template <Colour colour> 
 class QwintoRow { 
     public:
-        int arrayOfRolls[12];
-        int &operator[] (int index) const;
-        bool validate(int index) const;
-        friend ostream &operator<< (ostream &os, const QwintoRow<colour> &obj);
+        int arrayOfRolls[10] = {0,0,0,0,0,0,0,0,0,0};
+        
+        bool validate(int index, RollOfDice rollOfDice) const;
+        
+        int &operator[] (const int index){
+                return arrayOfRolls[index];
+        }
+        
+        friend ostream &operator<< (ostream &os, const QwintoRow &obj) {
+        //loop through QwintoRow array which contains RollofDice entries
+        //and print the value based on int conversion
+            for (int r : obj.arrayOfRolls){ 
+                os << static_cast<int>(r) << " ";
+            }
+            os << endl;
+            return os;
+        }
 };
 
 #endif /* QWINTOROW_H */

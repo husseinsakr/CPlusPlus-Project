@@ -47,7 +47,9 @@ int main() {
     
     QwintoRow<Colour::RED> row;
     
-    //row[2] = rd;
+    row[2] = rd;
+    
+    cout << row;
     //QwintoScoreSheet scoreSheet = {0, 0, "Hussein"};
     //QwintoScoreSheet qwintoScoreSheet;
 
