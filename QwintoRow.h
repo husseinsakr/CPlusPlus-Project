@@ -30,7 +30,7 @@ class QwintoRow {
         //loop through QwintoRow array which contains RollofDice entries
         //and print the value based on int conversion
             for (int r : obj.arrayOfRolls){ 
-                os << static_cast<int>(r) << " ";
+                os << r << " ";
             }
             os << endl;
             return os;
