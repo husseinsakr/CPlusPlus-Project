@@ -17,11 +17,20 @@
 #include "ScoreSheet.h"
 
 
-class QwintoScoreSheet: protected ScoreSheet {
+class QwintoScoreSheet: public ScoreSheet {
 public:
     QwintoRow<Colour::RED> redRow;
     QwintoRow<Colour::BLUE> blueRow;
     QwintoRow<Colour::YELLOW> yellowRow;
+    
+    //enters score returns booleans indicating if the dice can be scored
+    bool score(int &RollOfDice, Colour colour, int position = -1);
+        
+    //sets and returns the points for the final score
+    int setTotal(); 
+        
+    //helper method for setTotal
+    int calcTotal(); 
 
 };
 

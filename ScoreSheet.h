@@ -17,16 +17,23 @@
 #include "AllIncludes.h"
 
 class ScoreSheet {
-protected:
+public:
         //instance variables
 	int numberOfFailedThrows; //number of failed throws by player
 	int overallScore; //score of player, current and final
         string playerName; //stores player name in Scoresheet
         
         //functions
-	virtual bool score(int &RollOfDice, Colour colour, int position = -1); //enters score
-        virtual int setTotal(); //sets and returns the points for the final score
-        virtual int calcTotal(); //helper method for setTotal
+        //enters score returns booleans indicating if the dice can be scored
+	virtual bool score(int &RollOfDice, Colour colour, int position = -1);
+        
+        //sets and returns the points for the final score
+        virtual int setTotal(); 
+        
+        //helper method for setTotal
+        virtual int calcTotal(); 
+        
+        friend ostream &operator<< (ostream &os, const ScoreSheet &obj);
 };
 
 #endif /* SCORESHEET_H */

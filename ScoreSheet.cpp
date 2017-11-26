@@ -12,4 +12,11 @@
 
 #include "ScoreSheet.h"
 
+ostream &operator<< (ostream &os, const ScoreSheet &obj) {
+    os << obj.playerName;
+    
+
+
+}
+
 

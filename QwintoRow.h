@@ -20,7 +20,7 @@ class QwintoRow {
     public:
         int arrayOfRolls[10] = {0,0,0,0,0,0,0,0,0,0};
         
-        bool validate(int index, RollOfDice rollOfDice) const;
+        bool validate(int index, RollOfDice &rollOfDice) const;
         
         int &operator[] (const int index){
                 return arrayOfRolls[index];

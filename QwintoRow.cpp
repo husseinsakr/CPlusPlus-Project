@@ -14,7 +14,7 @@
 
 //method that validates if you can insert at a certain index
 template <Colour colour>
-bool QwintoRow<colour>::validate(int index, RollOfDice rollOfDice) const{
+bool QwintoRow<colour>::validate(int index, RollOfDice &rollOfDice) const{
     int illegalIndex; //can't place rollOfDice in this index
     
     switch(colour) { //each QwintoRow colour have a different illegal index
