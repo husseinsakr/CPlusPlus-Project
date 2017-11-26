@@ -42,7 +42,7 @@ bool QwintoRow<colour>::validate(int index, RollOfDice rollOfDice) const{
 
             if(i != index) {
                 smallerThanRoll = arrayOfRolls[i];
-                if (smallerThanRoll >= static_cast<int>(rollOfDice))
+                if (smallerThanRoll >= rollOfDice)
                     return false;
             }
         }
@@ -54,7 +54,7 @@ bool QwintoRow<colour>::validate(int index, RollOfDice rollOfDice) const{
             if (i == illegalIndex){ i++; }
             if(i != index) {
                 biggerThanRoll = arrayOfRolls[i];
-                if (biggerThanRoll >= static_cast<int>(rollOfDice))
+                if (biggerThanRoll >= rollOfDice)
                     return false;
             }
         }
