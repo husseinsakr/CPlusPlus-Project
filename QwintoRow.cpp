@@ -70,32 +70,32 @@ ostream &operator<< (ostream &os, const QwintoRow<colour> &obj) {
 	output += "|";
 	switch (colour) {
 		case Colour::RED:
-			int i = 1; //refers to position colomns in row
+			int i = 0; //refers to position colomns in row
 			for (int r : obj.arrayOfRolls){ 
 				//for printing parts of the row that are followed by % and
 				//for numbers less than 10 that need the extra space
-                if (r <= 9 && (i == 1 || i == 2 || i == 5 || i == 6)) {
+                if (r <= 9 && (i == 0 || i == 1 || i == 4 || i == 5)) {
 					tmp = ' ' + to_string(r) + '%';
 					output += tmp;
 				}
 				//when the number is less than 10 and not one that is 
 				//followed by a %
-				if (r <= 9 && (i != 1 || i != 2 || i != 5 || i != 6)) {
+				if (r <= 9 && (i != 0 || i != 1 || i != 4 || i != 5)) {
 					tmp = ' ' + to_string(r) + '|';
 					output += tmp;
 				}
 				//for the invalid row
-				if (i == 4) {
+				if (i == 3) {
 					tmp = "XX|";
 					output += tmp;
 				}
 				//when the number is greater than 9 and is followed by %
-				 if (r >= 10 && (i == 1 || i == 2 || i == 5 || i == 6)) {
+				 if (r >= 10 && (i == 0 || i == 1 || i == 4 || i == 5)) {
 					tmp = to_string(r) + '%';
 					output += tmp;
 				}
 				//when the number is greater than 9 and not followed by %
-				if (r >= 9 && (i != 1 || i != 2 || i != 5 || i != 6)) {
+				if (r >= 9 && (i != 0 || i != 1 || i != 4 || i != 5)) {
 					tmp = ' ' + to_string(r) + '|';
 					output += tmp;
 				}
@@ -105,52 +105,17 @@ ostream &operator<< (ostream &os, const QwintoRow<colour> &obj) {
             os << output << endl;
 		break;
         case Colour::YELLOW:
-			int i = 1; //refers to position colomns in row
+			int i = 0; //refers to position colomns in row
 			for (int r : obj.arrayOfRolls){ 
 				//for printing parts of the row that are followed by % and
 				//for numbers less than 10 that need the extra space
-                if (r <= 9 && (i == 7 || i == 8)) {
+                if (r <= 9 && (i == 6 || i == 7)) {
 					tmp = ' ' + to_string(r) + '%';
 					output += tmp;
 				}
 				//when the number is less than 10 and not one that is 
 				//followed by a %
-				if (r <= 9 && (i != 7 || i != 8)) {
-					tmp = ' ' + to_string(r) + '|';
-					output += tmp;
-				}
-				//for the invalid row
-				if (i == 6) {
-					tmp = "XX|";
-					output += tmp;
-				}
-				//when the number is greater than 9 and is followed by %
-				 if (r >= 10 && (i == 7 || i == 8 || i == 5 || i == 6)) {
-					tmp = to_string(r) + '%';
-					output += tmp;
-				}
-				//when the number is greater than 9 and not followed by %
-				if (r >= 9 && (i != 7 || i != 8)) {
-					tmp = to_string(r) + '|';
-					output += tmp;
-				}
-				i++;
-            }
-			output += "|";
-            os << output << endl;
-		break;
-		case Colour::BLUE:
-			int i = 1; //refers to position colomns in row
-			for (int r : obj.arrayOfRolls){ 
-				//for printing parts of the row that are followed by % and
-				//for numbers less than 10 that need the extra space
-                if (r <= 9 && (i == 2 || i == 3 || i == 9 || i == 10)) {
-					tmp = ' ' + to_string(r) + '%';
-					output += tmp;
-				}
-				//when the number is less than 10 and not one that is 
-				//followed by a %
-				if (r <= 9 && (i != 2 || i != 3 || i != 9 || i != 10)) {
+				if (r <= 9 && (i != 6 || i != 7)) {
 					tmp = ' ' + to_string(r) + '|';
 					output += tmp;
 				}
@@ -160,12 +125,47 @@ ostream &operator<< (ostream &os, const QwintoRow<colour> &obj) {
 					output += tmp;
 				}
 				//when the number is greater than 9 and is followed by %
-				 if (r >= 10 && (i == 2 || i == 3 || i == 9 || i == 10)) {
+				 if (r >= 10 && (i == 6 || i == 7)) {
 					tmp = to_string(r) + '%';
 					output += tmp;
 				}
 				//when the number is greater than 9 and not followed by %
-				if (r >= 9 && (i != 2 || i != 3 || i != 9 || i != 10)) {
+				if (r >= 9 && (i != 6 || i != 7)) {
+					tmp = to_string(r) + '|';
+					output += tmp;
+				}
+				i++;
+            }
+			output += "|";
+            os << output << endl;
+		break;
+		case Colour::BLUE:
+			int i = 0; //refers to position colomns in row
+			for (int r : obj.arrayOfRolls){ 
+				//for printing parts of the row that are followed by % and
+				//for numbers less than 10 that need the extra space
+                if (r <= 9 && (i == 1 || i == 2 || i == 8 || i == 9)) {
+					tmp = ' ' + to_string(r) + '%';
+					output += tmp;
+				}
+				//when the number is less than 10 and not one that is 
+				//followed by a %
+				if (r <= 9 && (i != 1 || i != 2 || i != 8 || i != 9)) {
+					tmp = ' ' + to_string(r) + '|';
+					output += tmp;
+				}
+				//for the invalid row
+				if (i == 4) {
+					tmp = "XX|";
+					output += tmp;
+				}
+				//when the number is greater than 9 and is followed by %
+				 if (r >= 10 && (i == 1 || i == 2 || i == 8 || i == 9)) {
+					tmp = to_string(r) + '%';
+					output += tmp;
+				}
+				//when the number is greater than 9 and not followed by %
+				if (r >= 9 && (i != 1 || i != 2 || i != 8 || i != 9)) {
 					tmp = to_string(r) + '|';
 					output += tmp;
 				}
