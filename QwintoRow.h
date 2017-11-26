@@ -26,15 +26,7 @@ class QwintoRow {
                 return arrayOfRolls[index];
         }
         
-        friend ostream &operator<< (ostream &os, const QwintoRow &obj) {
-        //loop through QwintoRow array which contains RollofDice entries
-        //and print the value based on int conversion
-            for (int r : obj.arrayOfRolls){ 
-                os << r << " ";
-            }
-            os << endl;
-            return os;
-        }
+        friend ostream &operator<< (ostream &os, const QwintoRow<colour> &obj);
 };
 
 #endif /* QWINTOROW_H */
