@@ -12,10 +12,10 @@
 
 #include "QwintoPlayer.h"
 
-void inputBeforeRoll(RollOfDice &rollOfDice) {
+void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
 	
 }
-void inputAfterRoll(RollOfDice &rollOfDice) {
+void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
 	
 }
     

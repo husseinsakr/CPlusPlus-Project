@@ -10,8 +10,13 @@
  * =================================
  */
 
+
 #ifndef QWINTOPLAYER_H
 #define QWINTOPLAYER_H
+
+#include "Player.h"
+#include "QwintoScoreSheet.h"
+
 class QwintoPlayer : Player {
 	QwintoScoreSheet qss;
 public:
