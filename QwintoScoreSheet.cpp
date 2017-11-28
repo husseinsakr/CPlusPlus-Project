@@ -36,3 +36,24 @@ bool QwintoScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int posit
     return validate;
 }
 
+bool QwintoScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position) {
+    if (validate(rollOfDice, colour, position)){
+            switch (colour){
+            case Colour::RED:
+                redRow[position] = rollOfDice;
+                return true;
+            break;       
+
+            case Colour::YELLOW:
+                yellowRow[position] = rollOfDice;
+                return true;
+            break;
+
+            case Colour::BLUE:
+                blueRow[position] = rollOfDice;
+                return true;
+            break;
+            }
+        }
+        return false;
+}

@@ -24,6 +24,7 @@ public:
     QwintoRow<Colour::YELLOW> yellowRow;
         
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
+    bool score(RollOfDice &rollOfDice, Colour colour, int position);
     
     int calcTotal(); //helper method for setTotal
 

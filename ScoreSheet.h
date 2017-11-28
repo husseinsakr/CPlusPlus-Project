@@ -20,9 +20,12 @@ class ScoreSheet {
     
 protected:
     
-    virtual bool validate(int &rollOfDice, Colour colour, int position) = 0;
+    virtual bool validate(RollOfDice &rollOfDice, Colour colour, int position) = 0;
     
     virtual int calcTotal() = 0; //helper method for setTotal
+    
+    //enters score returns booleans indicating if the dice can be scored
+    virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1) = 0;
     
 public: 
         //instance variables
@@ -31,8 +34,6 @@ public:
         string playerName; //stores player name in Scoresheet
         
         //functions
-        //enters score returns booleans indicating if the dice can be scored
-	virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1);
         
         //sets and returns the points for the final score
         virtual int setTotal() = 0; 
