@@ -3,3 +3,6 @@
 Makefile
 .dep.inc
 /dist/
+*.obj
+*.exe
+cplusplus-project.exe.stackdump

@@ -14,8 +14,8 @@
         
 //helper method for setTotal
 int QwintoScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
-    int redRowEntries, blueRowEntries, yellowRowEntries; //variables to store entries
-    int max; //used variable for the bonus columns
+    int redRowEntries = 0, blueRowEntries = 0, yellowRowEntries = 0; //variables to store entries
+    int max = 0; //used variable for the bonus columns
     
     for (auto x : redRow.arrayOfRolls) { //checking entries for red row
         if (x != 0) {
@@ -48,52 +48,27 @@ int QwintoScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
         overallScore += yellowRowEntries;
     
     if (redRow.arrayOfRolls[0] != 0 && yellowRow.arrayOfRolls[1] != 0 && blueRow.arrayOfRolls[2] != 0){ //checks first bonus column
-        max = redRow.arrayOfRolls[0];
-        if (max < yellowRow.arrayOfRolls[1])
-            max = yellowRow.arrayOfRolls[1];
-        
-        if (max < blueRow.arrayOfRolls[2])
-            max = blueRow.arrayOfRolls[2];
+        max = blueRow.arrayOfRolls[2];
         overallScore += max;
     }
     
     if (redRow.arrayOfRolls[1] != 0 && yellowRow.arrayOfRolls[2] != 0 && blueRow.arrayOfRolls[3] != 0){ //checks second bonus column
-        max = redRow.arrayOfRolls[1];
-        if (max < yellowRow.arrayOfRolls[2])
-            max = yellowRow.arrayOfRolls[2];
-        
-        if (max < blueRow.arrayOfRolls[3])
-            max = blueRow.arrayOfRolls[3];
+        max = redRow.arrayOfRolls[1];   
         overallScore += max;
     }
     
     if (redRow.arrayOfRolls[5] != 0 && yellowRow.arrayOfRolls[6] != 0 && blueRow.arrayOfRolls[7] != 0){ //checks third bonus column
         max = redRow.arrayOfRolls[5];
-        if (max < yellowRow.arrayOfRolls[6])
-            max = yellowRow.arrayOfRolls[6];
-        
-        if (max < blueRow.arrayOfRolls[7])
-            max = blueRow.arrayOfRolls[7];
         overallScore += max;
     }
     
     if (redRow.arrayOfRolls[6] != 0 && yellowRow.arrayOfRolls[7] != 0 && blueRow.arrayOfRolls[8] != 0){ //checks fourth bonus column
-        max = redRow.arrayOfRolls[6];
-        if (max < yellowRow.arrayOfRolls[7])
-            max = yellowRow.arrayOfRolls[7];
-        
-        if (max < blueRow.arrayOfRolls[8])
-            max = blueRow.arrayOfRolls[8];
+        max = yellowRow.arrayOfRolls[7];
         overallScore += max;
     }
     
     if (redRow.arrayOfRolls[7] != 0 && yellowRow.arrayOfRolls[8] != 0 && blueRow.arrayOfRolls[9] != 0){ //checks fifth bonus column
-        max = redRow.arrayOfRolls[7];
-        if (max < yellowRow.arrayOfRolls[8])
-            max = yellowRow.arrayOfRolls[8];
-        
-        if (max < blueRow.arrayOfRolls[9])
-            max = blueRow.arrayOfRolls[9];
+        max = blueRow.arrayOfRolls[9];
         overallScore += max;
     }
     

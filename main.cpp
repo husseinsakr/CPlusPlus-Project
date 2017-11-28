@@ -57,8 +57,43 @@ int main() {
 	cout << "         ------------------------------- " << endl;
 	cout << "Blue     " << brow << endl;
 	cout << "         ---------------------------- " << endl; 
-    //QwintoScoreSheet scoreSheet = {0, 0, "Hussein"};
-    //QwintoScoreSheet qwintoScoreSheet;
+        
+    QwintoScoreSheet scoreSheet;
+    scoreSheet.redRow.arrayOfRolls[0] = 2;
+    scoreSheet.redRow.arrayOfRolls[1] = 3;
+    scoreSheet.redRow.arrayOfRolls[2] = 6;
+    scoreSheet.redRow.arrayOfRolls[3] = 0;
+    scoreSheet.redRow.arrayOfRolls[4] = 9;
+    scoreSheet.redRow.arrayOfRolls[5] = 11;
+    scoreSheet.redRow.arrayOfRolls[6] = 12;
+    scoreSheet.redRow.arrayOfRolls[7] = 13;
+    scoreSheet.redRow.arrayOfRolls[8] = 15;
+    scoreSheet.redRow.arrayOfRolls[9] = 16;
+    cout << "red Row of scoreSheet " << scoreSheet.redRow; 
+    
+    scoreSheet.yellowRow.arrayOfRolls[0] = 1;
+    scoreSheet.yellowRow.arrayOfRolls[1] = 3;
+    scoreSheet.yellowRow.arrayOfRolls[2] = 4;
+    scoreSheet.yellowRow.arrayOfRolls[3] = 5;
+    scoreSheet.yellowRow.arrayOfRolls[4] = 0;
+    scoreSheet.yellowRow.arrayOfRolls[5] = 0;
+    scoreSheet.yellowRow.arrayOfRolls[6] = 12;
+    scoreSheet.yellowRow.arrayOfRolls[7] = 13;
+    scoreSheet.yellowRow.arrayOfRolls[8] = 0;
+    scoreSheet.yellowRow.arrayOfRolls[9] = 0;
+    
+    scoreSheet.blueRow.arrayOfRolls[0] = 1;
+    scoreSheet.blueRow.arrayOfRolls[1] = 3;
+    scoreSheet.blueRow.arrayOfRolls[2] = 0;
+    scoreSheet.blueRow.arrayOfRolls[3] = 6;
+    scoreSheet.blueRow.arrayOfRolls[4] = 0;
+    scoreSheet.blueRow.arrayOfRolls[5] = 7;
+    scoreSheet.blueRow.arrayOfRolls[6] = 0;
+    scoreSheet.blueRow.arrayOfRolls[7] = 0;
+    scoreSheet.blueRow.arrayOfRolls[8] = 10;
+    scoreSheet.blueRow.arrayOfRolls[9] = 0;
+    
+    cout << scoreSheet.calcTotal(3, 0);
 
     return 0;
 }

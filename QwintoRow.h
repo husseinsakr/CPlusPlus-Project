@@ -18,7 +18,7 @@
 template <Colour colour> 
 class QwintoRow { 
     public:
-        int arrayOfRolls[9] = {0,0,0,0,0,0,0,0,0};
+        int arrayOfRolls[10] = {0,0,0,0,0,0,0,0,0,0};
         
         bool validate(int index, RollOfDice &rollOfDice) const{
             int illegalIndex; //can't place rollOfDice in this index
@@ -46,7 +46,7 @@ class QwintoRow {
                 for (int i = 0; i < index; i++){ //check if all the rolls on the left are smaller
                     if (i == illegalIndex){ i++; }
 
-                    if(i != index) {
+                    if(i != index && arrayOfRolls[i] != 0) {
                         smallerThanRoll = arrayOfRolls[i];
                         if (smallerThanRoll >= rollOfDice)
                             return false;
@@ -58,7 +58,7 @@ class QwintoRow {
                 int biggerThanRoll = arrayOfRolls[index + 1];
                 for (int i = index + 1; i < 10; i++) { //check if all rolls on the right of the index are bigger
                     if (i == illegalIndex){ i++; }
-                    if(i != index) {
+                    if(i != index && arrayOfRolls[i] != 0) {
                         biggerThanRoll = arrayOfRolls[i];
                         if (biggerThanRoll >= rollOfDice)
                             return false;

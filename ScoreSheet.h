@@ -20,6 +20,11 @@ class ScoreSheet {
     
 protected:
     
+    //instance variables
+    int numberOfFailedThrows = 0; //number of failed throws by player
+    int overallScore = 0; //score of player, current and final
+    string playerName; //stores player name in Scoresheet
+    
     virtual bool validate(RollOfDice &rollOfDice, Colour colour, int position) = 0;
     
     virtual int calcTotal(int numberOfFailedThrows, int overallScore) = 0; //helper method for setTotal
@@ -28,19 +33,14 @@ protected:
     virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1) = 0;
     
 public: 
-        //instance variables
-	int numberOfFailedThrows; //number of failed throws by player
-	int overallScore; //score of player, current and final
-        string playerName; //stores player name in Scoresheet
+    //functions
         
-        //functions
-        
-        //sets and returns the points for the final score
-        virtual int setTotal(); 
+    //sets and returns the points for the final score
+    virtual int setTotal(); 
        
-        friend ostream& operator<< (ostream &os, const ScoreSheet &obj);
+    friend ostream& operator<< (ostream &os, const ScoreSheet &obj);
         
-        //virtual bool operator! (); //returns true if the scoresheet indicates the game is done
+    //virtual bool operator! (); //returns true if the scoresheet indicates the game is done
 };
 
 #endif /* SCORESHEET_H */
