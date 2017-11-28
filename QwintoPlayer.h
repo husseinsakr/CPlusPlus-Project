@@ -12,5 +12,12 @@
 
 #ifndef QWINTOPLAYER_H
 #define QWINTOPLAYER_H
+class QwintoPlayer : Player {
+	QwintoScoreSheet qss;
+public:
+	virtual void inputBeforeRoll(RollOfDice &rollOfDice);
+    virtual void inputAfterRoll(RollOfDice &rollOfDice);
+    
+};
 
 #endif /* QWINTOPLAYER_H */

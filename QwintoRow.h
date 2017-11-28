@@ -18,7 +18,7 @@
 template <Colour colour> 
 class QwintoRow { 
     public:
-        int arrayOfRolls[10] = {0,0,0,0,0,0,0,0,0,0};
+        int arrayOfRolls[9] = {0,0,0,0,0,0,0,0,0};
         
         bool validate(int index, RollOfDice &rollOfDice) const{
             int illegalIndex; //can't place rollOfDice in this index
@@ -79,7 +79,7 @@ class QwintoRow {
             string output; string tmp;
             output += "|";
             int i = 0;
-            
+			
             switch (colour) {
                     case Colour::RED:
                         i = 0; //refers to position colomns in row
@@ -92,23 +92,23 @@ class QwintoRow {
                             }
                             //when the number is less than 10 and not one that is 
                             //followed by a %
-                            if (r <= 9 && (i != 0 || i != 1 || i != 4 || i != 5)) {
+                            else if (r <= 9 && (i != 0 || i != 1 || i != 4 || i != 5)) {
                                 tmp = ' ' + to_string(r) + '|';
                                 output += tmp;
                             }
                             //for the invalid row
-                            if (i == 3) {
+                            else if (i == 3) {
                                 tmp = "XX|";
                                 output += tmp;
                             }
                             //when the number is greater than 9 and is followed by %
-                            if (r >= 10 && (i == 0 || i == 1 || i == 4 || i == 5)) {
+                            else if (r >= 10 && (i == 0 || i == 1 || i == 4 || i == 5)) {
                                 tmp = to_string(r) + '%';
                                 output += tmp;
                             }
                             //when the number is greater than 9 and not followed by %
-                            if (r >= 9 && (i != 0 || i != 1 || i != 4 || i != 5)) {
-                                tmp = ' ' + to_string(r) + '|';
+                            else if (r >= 9 && (i != 0 || i != 1 || i != 4 || i != 5)) {
+                                tmp = to_string(r) + '|';
                                 output += tmp;
                             }
                             i++;
@@ -127,22 +127,22 @@ class QwintoRow {
                             }
                             //when the number is less than 10 and not one that is 
                             //followed by a %
-                            if (r <= 9 && (i != 6 || i != 7)) {
+                            else if (r <= 9 && (i != 6 || i != 7)) {
                                 tmp = ' ' + to_string(r) + '|';
                                 output += tmp;
                             }
                             //for the invalid row
-                            if (i == 5) {
+                            else if (i == 5) {
                                 tmp = "XX|";
                                 output += tmp;
                             }
                             //when the number is greater than 9 and is followed by %
-                            if (r >= 10 && (i == 6 || i == 7)) {
+                            else if (r >= 10 && (i == 6 || i == 7)) {
                                 tmp = to_string(r) + '%';
                                 output += tmp;
                             }
                             //when the number is greater than 9 and not followed by %
-                            if (r >= 9 && (i != 6 || i != 7)) {
+                            else if (r >= 9 && (i != 6 || i != 7)) {
                                 tmp = to_string(r) + '|';
                                 output += tmp;
                             }
@@ -162,22 +162,22 @@ class QwintoRow {
                             }
                             //when the number is less than 10 and not one that is 
                             //followed by a %
-                            if (r <= 9 && (i != 1 || i != 2 || i != 8 || i != 9)) {
+                            else if (r <= 9 && (i != 1 || i != 2 || i != 8 || i != 9)) {
                                 tmp = ' ' + to_string(r) + '|';
                                 output += tmp;
                             }
                             //for the invalid row
-                            if (i == 4) {
+                            else if (i == 4) {
                                 tmp = "XX|";
                                 output += tmp;
                             }
                             //when the number is greater than 9 and is followed by %
-                            if (r >= 10 && (i == 1 || i == 2 || i == 8 || i == 9)) {
+                            else if (r >= 10 && (i == 1 || i == 2 || i == 8 || i == 9)) {
                                 tmp = to_string(r) + '%';
                                 output += tmp;
                             }
                             //when the number is greater than 9 and not followed by %
-                            if (r >= 9 && (i != 1 || i != 2 || i != 8 || i != 9)) {
+                            else if (r >= 9 && (i != 1 || i != 2 || i != 8 || i != 9)) {
                                 tmp = to_string(r) + '|';
                                 output += tmp;
                             }

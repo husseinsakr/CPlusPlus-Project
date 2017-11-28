@@ -11,3 +11,11 @@
  */
 
 #include "QwintoPlayer.h"
+
+void inputBeforeRoll(RollOfDice &rollOfDice) {
+	
+}
+void inputAfterRoll(RollOfDice &rollOfDice) {
+	
+}
+    
