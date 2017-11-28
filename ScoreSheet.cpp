@@ -19,4 +19,10 @@ ostream &operator<< (ostream &os, const ScoreSheet &obj) {
 
 }
 
+bool ScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position) {
+    
+    
+    return true;
+}
+
 

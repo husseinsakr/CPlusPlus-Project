@@ -113,7 +113,6 @@ class QwintoRow {
                             }
                             i++;
                         }
-                        output += "|";
                         os << output << endl;
                     break;
                     
@@ -149,7 +148,6 @@ class QwintoRow {
                             }
                             i++;
                         }
-                        output += "|";
                         os << output << endl;
                     break;
                     
@@ -185,7 +183,6 @@ class QwintoRow {
                             }
                             i++;
                         }
-                        output += "|";
                         os << output << endl;
                     break;		
             }

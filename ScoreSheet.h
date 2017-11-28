@@ -17,7 +17,14 @@
 #include "AllIncludes.h"
 
 class ScoreSheet {
-public:
+    
+protected:
+    
+    virtual bool validate(int &rollOfDice, Colour colour, int position) = 0;
+    
+    virtual int calcTotal() = 0; //helper method for setTotal
+    
+public: 
         //instance variables
 	int numberOfFailedThrows; //number of failed throws by player
 	int overallScore; //score of player, current and final
@@ -25,15 +32,14 @@ public:
         
         //functions
         //enters score returns booleans indicating if the dice can be scored
-	virtual bool score(int &RollOfDice, Colour colour, int position = -1);
+	virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1);
         
         //sets and returns the points for the final score
-        virtual int setTotal(); 
+        virtual int setTotal() = 0; 
+       
+        friend ostream& operator<< (ostream &os, const ScoreSheet &obj);
         
-        //helper method for setTotal
-        virtual int calcTotal(); 
-        
-        friend ostream &operator<< (ostream &os, const ScoreSheet &obj);
+        //virtual bool operator! (); //returns true if the scoresheet indicates the game is done
 };
 
 #endif /* SCORESHEET_H */

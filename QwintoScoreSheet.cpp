@@ -11,18 +11,28 @@
  */
 
 #include "QwintoScoreSheet.h"
-
-bool QwintoScoreSheet::score(int &RollOfDice, Colour colour, int position) {
-    return true;
-}
-        
-//sets and returns the points for the final score
-int QwintoScoreSheet::setTotal() {
-    return 1;
-} 
         
 //helper method for setTotal
 int QwintoScoreSheet::calcTotal() {
     return 1;
 } 
+
+bool QwintoScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int position){
+    bool validate;
+    
+    switch (colour){
+        case Colour::RED:
+            validate = redRow.validate(position, rollOfDice);
+        break;       
+
+        case Colour::YELLOW:
+            validate = yellowRow.validate(position, rollOfDice);
+        break;
+
+        case Colour::BLUE:
+            validate = blueRow.validate(position, rollOfDice);
+        break;
+    }
+    return validate;
+}
 
