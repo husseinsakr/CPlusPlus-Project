@@ -26,7 +26,7 @@ public:
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
     bool score(RollOfDice &rollOfDice, Colour colour, int position);
     
-    int calcTotal(); //helper method for setTotal
+    int calcTotal(int numberOfFailedThrows, int overallScore); //helper method for setTotal
 
 };
 

@@ -22,7 +22,7 @@ protected:
     
     virtual bool validate(RollOfDice &rollOfDice, Colour colour, int position) = 0;
     
-    virtual int calcTotal() = 0; //helper method for setTotal
+    virtual int calcTotal(int numberOfFailedThrows, int overallScore) = 0; //helper method for setTotal
     
     //enters score returns booleans indicating if the dice can be scored
     virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1) = 0;
@@ -36,7 +36,7 @@ public:
         //functions
         
         //sets and returns the points for the final score
-        virtual int setTotal() = 0; 
+        virtual int setTotal(); 
        
         friend ostream& operator<< (ostream &os, const ScoreSheet &obj);
         
