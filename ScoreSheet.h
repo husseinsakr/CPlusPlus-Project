@@ -31,8 +31,7 @@ protected:
     
     //enters score returns booleans indicating if the dice can be scored
     virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1) = 0;
-	
-	virtual bool operator! (); //returns true if the scoresheet indicates the game is done
+    virtual bool operator! () = 0; //returns true if the scoresheet indicates the game is done
     
 public: 
     //functions
