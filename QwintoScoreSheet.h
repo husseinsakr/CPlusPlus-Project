@@ -25,8 +25,10 @@ public:
         
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
     bool score(RollOfDice &rollOfDice, Colour colour, int position);
+    bool operator! (); //returns true if the scoresheet indicates the game is done
     
-    int calcTotal(int numberOfFailedThrows, int overallScore); //helper method for setTotal
+	int calcTotal(int numberOfFailedThrows, int overallScore); //helper method for setTotal
+	
 
 };
 

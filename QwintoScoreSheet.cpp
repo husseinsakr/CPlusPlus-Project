@@ -117,3 +117,37 @@ bool QwintoScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position
         }
         return false;
 }
+
+bool QwintoScoreSheet::operator! () {
+	int elemCounter = 0;
+	int rowCounter = 0;
+	for (auto i : redRow.arrayOfRolls) {
+		if (i != 0) {
+			elemCounter++;
+		}
+	}
+	if (elemCounter == 9) {
+		rowCounter++;
+	}
+	elemCounter = 0;
+	for (auto i : yellowRow.arrayOfRolls) {
+		if (i != 0) {
+			elemCounter++;
+		}
+	}
+	
+	if (elemCounter == 9) {
+		rowCounter++;
+	}
+	elemCounter = 0;
+	for (auto i : blueRow.arrayOfRolls) {
+		if (i != 0) {
+			elemCounter++;
+		}
+	}
+	if (elemCounter == 9) {
+		rowCounter++;
+	}
+	return (!numberOfFailedThrows == 4 || !rowCounter == 2); 	
+}
+    
