@@ -17,7 +17,7 @@
 #include "ScoreSheet.h"
 
 
-class QwintoScoreSheet: protected ScoreSheet {
+class QwintoScoreSheet: public ScoreSheet {
 public:
     QwintoRow<Colour::RED> redRow;
     QwintoRow<Colour::BLUE> blueRow;
@@ -28,8 +28,20 @@ public:
     bool operator! (); //returns true if the scoresheet indicates the game is done
     
     int calcTotal(int numberOfFailedThrows, int overallScore); //helper method for setTotal
-	
-
+    
+    ostream& doprint(ostream& os) const {
+        os << "               ---------------------------- " << endl;
+        os << "Red            " << redRow << endl;
+	os << "            ------------------------------- " << endl;
+	os << "Yellow      " << yellowRow << endl;
+	os << "         ------------------------------- " << endl;
+	os << "Blue     " << blueRow << endl;
+	os << "         ---------------------------- " << endl;
+        return os;
+    }
+    
+    //friend ostream& operator<< (ostream &os, const QwintoScoreSheet &obj);
+    
 };
 
 

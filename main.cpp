@@ -58,7 +58,11 @@ int main() {
 	cout << "Blue     " << brow << endl;
 	cout << "         ---------------------------- " << endl; 
         
+    //ScoreSheet *scoreSheet;
     QwintoScoreSheet scoreSheet;
+    
+    
+    
     scoreSheet.redRow.arrayOfRolls[0] = 2;
     scoreSheet.redRow.arrayOfRolls[1] = 3;
     scoreSheet.redRow.arrayOfRolls[2] = 6;
@@ -69,7 +73,6 @@ int main() {
     scoreSheet.redRow.arrayOfRolls[7] = 13;
     scoreSheet.redRow.arrayOfRolls[8] = 15;
     scoreSheet.redRow.arrayOfRolls[9] = 16;
-    cout << "red Row of scoreSheet " << scoreSheet.redRow; 
     
     scoreSheet.yellowRow.arrayOfRolls[0] = 1;
     scoreSheet.yellowRow.arrayOfRolls[1] = 3;
@@ -93,7 +96,8 @@ int main() {
     scoreSheet.blueRow.arrayOfRolls[8] = 10;
     scoreSheet.blueRow.arrayOfRolls[9] = 0;
     
-    cout << scoreSheet.calcTotal(3, 0);
+    
+    cout << scoreSheet;
 
     return 0;
 }

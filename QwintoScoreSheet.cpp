@@ -11,6 +11,10 @@
  */
 
 #include "QwintoScoreSheet.h"
+
+//ostream& operator<< (ostream &os, const QwintoScoreSheet &obj){
+    //return obj.doprint(os);
+//}
         
 //helper method for setTotal
 int QwintoScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
@@ -78,19 +82,31 @@ int QwintoScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
 } 
 
 bool QwintoScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int position){
-    bool validate;
+    bool validate = true;
     
     switch (colour){
         case Colour::RED:
             validate = redRow.validate(position, rollOfDice);
+            if (position >= 0 && position <= 7 && validate) { //column overlap check
+                if(yellowRow.arrayOfRolls[position + 1] == rollOfDice && blueRow.arrayOfRolls[position + 2] == rollOfDice)
+                    validate = false;
+            }
         break;       
 
         case Colour::YELLOW:
             validate = yellowRow.validate(position, rollOfDice);
+            if (position >= 1 && position <= 8 && validate) { //column overlap check
+                if(redRow.arrayOfRolls[position - 1] == rollOfDice && blueRow.arrayOfRolls[position + 1] == rollOfDice)
+                    validate = false;
+            }
         break;
 
         case Colour::BLUE:
             validate = blueRow.validate(position, rollOfDice);
+            if (position >= 2 && position <= 9 && validate) { //column overlap check
+                if(redRow.arrayOfRolls[position - 2] == rollOfDice && yellowRow.arrayOfRolls[position - 1] == rollOfDice)
+                    validate = false;
+            }
         break;
     }
     return validate;
