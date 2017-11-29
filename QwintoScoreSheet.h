@@ -30,7 +30,7 @@ public:
     int calcTotal(int numberOfFailedThrows, int overallScore); //helper method for setTotal
     
     ostream& doprint(ostream& os) const {
-        os << "               ---------------------------- " << endl;
+        os << "               ------------------------------- " << endl;
         os << "Red            " << redRow << endl;
 	os << "            ------------------------------- " << endl;
 	os << "Yellow      " << yellowRow << endl;
@@ -40,7 +40,9 @@ public:
         return os;
     }
     
-    //friend ostream& operator<< (ostream &os, const QwintoScoreSheet &obj);
+    friend ostream& operator<<(ostream &os, const QwintoScoreSheet &aQwintoScoreSheet) {
+        return aQwintoScoreSheet.doprint(os);
+    }
     
 };
 

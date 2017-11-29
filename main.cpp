@@ -45,21 +45,11 @@ int main() {
     cout << "calling insertion operator:" << endl;
     cout << rd << endl;
     
-    QwintoRow<Colour::RED> row;
-    row[2] = rd;
-    QwintoRow<Colour::YELLOW> yrow;
-    QwintoRow<Colour::BLUE> brow;
-	cout << "Player name: " << endl;
-	cout << "               ---------------------------- " << endl;
-	cout << "Red            " << row << endl;
-	cout << "            ------------------------------- " << endl;
-	cout << "Yellow      " << yrow << endl;
-	cout << "         ------------------------------- " << endl;
-	cout << "Blue     " << brow << endl;
-	cout << "         ---------------------------- " << endl; 
-        
     //ScoreSheet *scoreSheet;
     QwintoScoreSheet scoreSheet;
+    scoreSheet.numberOfFailedThrows =3;
+    scoreSheet.overallScore = 10;
+    scoreSheet.playerName = "Hussein";
     
     
     
