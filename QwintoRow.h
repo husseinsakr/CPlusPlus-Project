@@ -87,13 +87,19 @@ class QwintoRow {
                             //for printing parts of the row that are followed by % and
                             //for numbers less than 10 that need the extra space
                             if (r <= 9 && (i == 0 || i == 1 || i == 4 || i == 5) && i != 3) {
-                                tmp = ' ' + to_string(r) + '%';
+                                if (r == 0)
+                                    tmp = "  %";
+                                else 
+                                    tmp = " " + to_string(r) + "%";
                                 output += tmp;
                             }
                             //when the number is less than 10 and not one that is 
                             //followed by a %
                             else if (r <= 9 && (i != 0 || i != 1 || i != 4 || i != 5)&& i != 3) {
-                                tmp = ' ' + to_string(r) + '|';
+                                if (r == 0)
+                                    tmp = "  |";
+                                else 
+                                    tmp = " " + to_string(r) + "|";
                                 output += tmp;
                             }
                             //for the invalid row
@@ -103,12 +109,12 @@ class QwintoRow {
                             }
                             //when the number is greater than 9 and is followed by %
                             else if (r >= 10 && (i == 0 || i == 1 || i == 4 || i == 5) && i != 3) {
-                                tmp = to_string(r) + '%';
+                                tmp = to_string(r) + "%";
                                 output += tmp;
                             }
                             //when the number is greater than 9 and not followed by %
                             else if (r >= 9 && (i != 0 || i != 1 || i != 4 || i != 5) && i != 3) {
-                                tmp = to_string(r) + '|';
+                                tmp = to_string(r) + "|";
                                 output += tmp;
                             }
                             i++;
@@ -122,13 +128,19 @@ class QwintoRow {
                             //for printing parts of the row that are followed by % and
                             //for numbers less than 10 that need the extra space
                             if (r <= 9 && (i == 6 || i == 7) && i != 5) {
-                                tmp = ' ' + to_string(r) + '%';
+                                if (r == 0)
+                                    tmp = "  %";
+                                else 
+                                    tmp = " " + to_string(r) + "%";
                                 output += tmp;
                             }
                             //when the number is less than 10 and not one that is 
                             //followed by a %
                             else if (r <= 9 && (i != 6 || i != 7) && i != 5) {
-                                tmp = ' ' + to_string(r) + '|';
+                                if (r == 0)
+                                    tmp = "  |";
+                                else 
+                                    tmp = " " + to_string(r) + "|";
                                 output += tmp;
                             }
                             //for the invalid row
@@ -138,12 +150,12 @@ class QwintoRow {
                             }
                             //when the number is greater than 9 and is followed by %
                             else if (r >= 10 && (i == 6 || i == 7) && i != 5) {
-                                tmp = to_string(r) + '%';
+                                tmp = to_string(r) + "%";
                                 output += tmp;
                             }
                             //when the number is greater than 9 and not followed by %
                             else if (r >= 9 && (i != 6 || i != 7) && i != 5) {
-                                tmp = to_string(r) + '|';
+                                tmp = to_string(r) + "|";
                                 output += tmp;
                             }
                             i++;
@@ -157,13 +169,19 @@ class QwintoRow {
                             //for printing parts of the row that are followed by % and
                             //for numbers less than 10 that need the extra space
                             if (r <= 9 && (i == 1 || i == 2 || i == 8 || i == 9) && i != 4) {
-                                tmp = ' ' + to_string(r) + '%';
+                                 if (r == 0)
+                                    tmp = "  %";
+                                else 
+                                    tmp = " " + to_string(r) + "%";
                                 output += tmp;
                             }
                             //when the number is less than 10 and not one that is 
                             //followed by a %
                             else if (r <= 9 && (i != 1 || i != 2 || i != 8 || i != 9) && i != 4) {
-                                tmp = ' ' + to_string(r) + '|';
+                                if (r == 0)
+                                    tmp = "  |";
+                                else 
+                                    tmp = " " + to_string(r) + "|";
                                 output += tmp;
                             }
                             //for the invalid row
@@ -173,12 +191,12 @@ class QwintoRow {
                             }
                             //when the number is greater than 9 and is followed by %
                             else if (r >= 10 && (i == 1 || i == 2 || i == 8 || i == 9) && i != 4) {
-                                tmp = to_string(r) + '%';
+                                tmp = to_string(r) + "%";
                                 output += tmp;
                             }
                             //when the number is greater than 9 and not followed by %
                             else if (r >= 9 && (i != 1 || i != 2 || i != 8 || i != 9) && i != 4) {
-                                tmp = to_string(r) + '|';
+                                tmp = to_string(r) + "|";
                                 output += tmp;
                             }
                             i++;
