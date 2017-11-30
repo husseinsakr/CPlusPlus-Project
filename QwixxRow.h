@@ -20,11 +20,10 @@
  
 template <class T, Colour colour>
 class QwixxRow {
-    T container = {0,0,0,0,0,0,0,0,0,0,0};
-    
     public:
-	
+	T container = {0,0,0,0,0,0,0,0,0,0,0};
 	QwixxRow operator+= (const RollOfDice& rollofdice){
+             bool add = true;
              string msg = "Your roll has more than 2 dice and can't be used to scored";
 		if (rollofdice.diceVec.size() > 2 ) {
                     throw length_error(msg);
@@ -40,10 +39,15 @@ class QwixxRow {
                             return *this;
                         }
                         else {
-                            
-                            container.at(rd - 2) = rd;
-                            cout << "inserting RD: " << rd << " into Vector container" << endl;
-                            
+                            for (int i = (rd - 2); i < 11; i++) {
+                                if (container.at(i)) {
+                                    add = false;
+                                }
+                            }
+                            if (add) {
+                                container.at(rd - 2) = rd;
+                                cout << "inserting RD: " << rd << " into Vector container" << endl;
+                            }
                             return *this; 
                             
                         }
@@ -55,11 +59,15 @@ class QwixxRow {
                             return *this;
                         }
                        else {
-                        
-                            container.at(rd - 2) = rd;
-                            cout << "inserting RD: " << rd << " into List container" << endl;
-                            cout << "List container has at back: " << container.back() << endl;
-                            
+                           for (int i = (rd-2); i > 0; i--) {
+                               if (container.at(i)) {
+                                    add = false;
+                                }
+                           }
+                           if (add) {
+                                container.at(rd - 2) = rd;
+                                cout << "inserting RD: " << rd << " into List container" << endl;
+                           }
                             return *this; 
                            
                        }
