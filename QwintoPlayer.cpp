@@ -13,7 +13,76 @@
 #include "QwintoPlayer.h"
 
 void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
-	
+    if (isActive){ //if player is active
+        int numberOfDice = 0;
+        cout << "How many dice do you want to roll?" << endl;
+        while (true) {  //asks user how many dice he wants to roll
+            cin >> numberOfDice;
+            if (numberOfDice > 0 && numberOfDice < 4) {
+                break;
+            } else {
+                cout << "You can only roll between 1 and 3 dice!" << endl;                
+            }   
+        }
+        
+        string diceColoursChosenByUser[numberOfDice];
+        Colour diceTypeColoursChosenByUser[numberOfDice];
+        string notRepetitiveColour;
+        
+        if (numberOfDice != 3) { //asks user what dice colours he wants
+            cout << "Enter the colours of the dice you would like to use" << endl;
+            
+            cout << "Dice colours: " << endl;
+            for (int i = 1; i <= numberOfDice; i++) {
+                cout << "Dice " << i << " colour is: ";
+                cin >> diceColoursChosenByUser[i - 1];
+                    
+                if (diceColoursChosenByUser[i - 1] != "red" && diceColoursChosenByUser[i - 1] != "yellow" //checks if the user pushed the right available colours
+                        && diceColoursChosenByUser[i - 1] != "blue") {  //need to figure out how to make strings lowercase
+                    i--; //decrement i to repeat call
+                    cout << endl << "You have to enter either red, yellow or blue!" << endl;
+                        
+                } else if (i != 1){ //checks if user passes unique different dice colours
+                    for (int j = 0; j < i - 1; j++) {
+                        notRepetitiveColour = diceColoursChosenByUser[j];
+                        for (int k = j + 1; k < i; k++) {
+                            if(notRepetitiveColour != diceColoursChosenByUser[k]){
+                                i--; //decrement i to repeat call
+                                cout << endl << "Can't have two dice with the same colour!" << endl;
+                            }
+                        }
+                    }
+                }    
+            }
+            
+            for (int n = 0; n < sizeof(diceColoursChosenByUser); n++) { //makes a new array to match class Colour
+                if (diceColoursChosenByUser[n] == "red")
+                    diceTypeColoursChosenByUser[n] = Colour::RED;
+                else if (diceColoursChosenByUser[n] == "yellow")
+                    diceTypeColoursChosenByUser[n] = Colour::YELLOW;
+                else if (diceColoursChosenByUser[n] == "blue")
+                    diceTypeColoursChosenByUser[n] = Colour::BLUE;
+            }
+                
+        } else {
+            diceTypeColoursChosenByUser[0] = Colour::RED;
+            diceTypeColoursChosenByUser[1] = Colour::YELLOW;
+            diceTypeColoursChosenByUser[2] = Colour::BLUE;
+        }
+        
+        //make rollOfDice using pair than roll!
+        RollOfDice diceUserWillRoll; //user will roll these dice from all dices
+        for (int f = 0; f < rollOfDice.diceVec.size(); f++){  //taking only the dices the user will roll
+            for (int x = 0; x < sizeof(diceTypeColoursChosenByUser); x++){
+                if(rollOfDice.diceVec[f].colour == diceTypeColoursChosenByUser[x]) { //making copy of dice to new RollOfDice
+                    diceUserWillRoll.diceVec.push_back(rollOfDice.diceVec[f]);
+                }
+            }
+        }
+        
+        diceUserWillRoll.roll(); //user rolls the dice
+        inputAfterRoll(diceUserWillRoll); //calls inputAfterRoll for everybody to score in their scoreSheet
+    }
 }
 void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
 	
