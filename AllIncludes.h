@@ -18,6 +18,7 @@
 #include <random>
 #include <String>
 #include <algorithm>
+#include <list>
 
 using namespace std;
 

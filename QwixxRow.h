@@ -15,7 +15,6 @@
 #ifndef QWIXXROW_H
 #define QWIXXROW_H
  
-#include <list>
 #include "AllIncludes.h"
 #include "RollOfDice.h"
  
