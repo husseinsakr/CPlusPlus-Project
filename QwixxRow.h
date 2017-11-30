@@ -22,8 +22,6 @@
 template <class T, Colour colour>
 class QwixxRow {
     T container = {0,0,0,0,0,0,0,0,0,0,0};
-    bool endRow = false; //to be changed at the end if the row is locked
-    bool rowLock = false;
     
     public:
 	
@@ -76,7 +74,7 @@ class QwixxRow {
         
 		
         
-	friend ostream& operator<< (ostream &os, QwixxRow &obj) {
+	friend ostream& operator<< (ostream &os,const QwixxRow &obj) {
             string output; string tmp;
             output = "|";
             int y = 0;
@@ -96,9 +94,6 @@ class QwixxRow {
                             output += tmp;
                         }
                         else if (x != 0) {
-                            if (x == 12) {
-                                obj.endRow = true;
-                            }
                             entryCounter++;
                             tmp = "XX|";
                             output += tmp;
@@ -108,9 +103,6 @@ class QwixxRow {
                     }
                     
                     if (entryCounter == 5) {
-                        if (obj.endRow) {
-                            obj.rowLock = true;
-                        }
                         output += " L";
                     }
                     else {

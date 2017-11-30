@@ -106,15 +106,20 @@ int main() {
     rd.roll();
     rRow += rd;
     
+    cout << "        ------------------------------------" << endl;
+    cout << "Red     " << rRow;
+    cout << endl;
+    cout << "        ------------------------------------" << endl;
+    cout << "Yellow  " << yRow;
+    cout << endl;
+    cout << "        ------------------------------------" << endl;
+    cout << "Green   " << gRow;
+    cout << endl;
+    cout << "        ------------------------------------" << endl;
+    cout << "Blue    " << bRow;
+    cout << endl;
+    cout << "        ------------------------------------" << endl;
     
-    cout << rRow;
-    cout << endl;
-    cout << yRow;
-    cout << endl;
-    cout << gRow; 
-    cout << endl;
-    cout << bRow;
-    cout << endl;
     
     QwintoPlayer player1;
     player1.qss = scoreSheet;

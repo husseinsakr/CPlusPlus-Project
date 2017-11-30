@@ -21,7 +21,7 @@ class QwixxScoreSheet : public ScoreSheet {
     
 public:
     QwixxRow<vector<int>, Colour::RED> redRow;
-    QwixxRow<vector<int>, Colour::YELLOW> yelloRow;
+    QwixxRow<vector<int>, Colour::YELLOW> yellowRow;
     QwixxRow<list<int>, Colour::GREEN> greenRow;
     QwixxRow<list<int>, Colour::BLUE> blueRow;
     
@@ -34,11 +34,26 @@ public:
     bool score(RollOfDice &rollOfDice, Colour colour, int position);
     bool operator! ();
     ostream& doprint(ostream& os) const {
+        os << "        ------------------------------------" << endl;
+        os << "Red     " << redRow;
+        os << endl;
+        os << "        ------------------------------------" << endl;
+        os << "Yellow  " << yellowRow;
+        os << endl;
+        os << "        ------------------------------------" << endl;
+        os << "Green   " << greenRow;
+        os << endl;
+        os << "        ------------------------------------" << endl;
+        os << "Blue    " << blueRow;
+        os << endl;
+        os << "        ------------------------------------" << endl;
         return os;
     }
      
     //functions
-    friend ostream& operator<< (ostream &os, const ScoreSheet &obj);
+    friend ostream& operator<< (ostream &os, const QwixxScoreSheet &aQwixxScoreSheet) {
+        return aQwixxScoreSheet.doprint(os);
+    }
 };
 
 #endif /* QWIXXSCORESHEET_H */
