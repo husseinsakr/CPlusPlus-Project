@@ -19,10 +19,10 @@
 
 class QwintoPlayer : public Player {
 	QwintoScoreSheet qss;
-        
+        void inputAfterRoll(RollOfDice &rollOfDice);
 public:
     void inputBeforeRoll(RollOfDice &rollOfDice);
-    void inputAfterRoll(RollOfDice &rollOfDice);
+    
     
 };
 

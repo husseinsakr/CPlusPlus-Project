@@ -27,7 +27,7 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
         
         string diceColoursChosenByUser[numberOfDice];
         Colour diceTypeColoursChosenByUser[numberOfDice];
-        string notRepetitiveColour;
+        string notRepetitiveColour = " ";
         
         if (numberOfDice != 3) { //asks user what dice colours he wants
             cout << "Enter the colours of the dice you would like to use" << endl;
@@ -85,6 +85,94 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
     }
 }
 void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
-	
+    bool redCanBeScored = false;
+    bool yellowCanBeScored = false;
+    bool blueCanBeScored = false;
+    bool hasBeenScored = false;
+    bool rowColourChosenIsCorrect = false;
+    bool canUserScore = false;
+    string arrayOfScorableColours[3];
+    string rowColourChosen = " ";
+    Colour rowColourTypeChosen;
+    int indexToScoreIn = 0;
+    string leaveRow = " ";
+       
+    //check the dice colours that was used in the rollOfDice and what can be scored
+    for (int j = 0; j < rollOfDice.diceVec.size(); j++) { 
+        if(rollOfDice.diceVec[j].colour == Colour::RED){
+            redCanBeScored = true;
+            arrayOfScorableColours[j] = "red";
+        }else if(rollOfDice.diceVec[j].colour == Colour::YELLOW){
+            yellowCanBeScored = true;
+            arrayOfScorableColours[j] = "yellow";
+        }else if(rollOfDice.diceVec[j].colour == Colour::BLUE){
+            blueCanBeScored = true;
+            arrayOfScorableColours[j] = "blue";
+        }
+    }
+    
+    while (!hasBeenScored){
+        
+        for (int j = 0; j <= 10; j++) { //checks if the user can score or not
+            if(redCanBeScored) {
+                canUserScore = qss.validate(rollOfDice, Colour::RED, j);
+                if(canUserScore){
+                    break;
+                }
+            }
+            if(yellowCanBeScored) {
+                canUserScore = qss.validate(rollOfDice, Colour::YELLOW, j);
+                if(canUserScore){
+                    break;
+                }
+            }
+            if(blueCanBeScored) {
+                canUserScore = qss.validate(rollOfDice, Colour::BLUE, j);
+                if(canUserScore){
+                    break;
+                }
+            }
+            
+        }
+        if (!canUserScore){  //if user can't score increment number of failed throws and break from while loop
+            qss.numberOfFailedThrows++;
+            break;
+        }
+        
+        while(!rowColourChosenIsCorrect){ //user asked to choose a row colour
+            cout << "You can only score in:";
+            if (redCanBeScored)
+                cout << " RED";
+            if (yellowCanBeScored)
+                cout << " YELLOW";
+            if (blueCanBeScored)
+                cout << " BLUE";
+            cout << " rows!" << endl << "What row colour would you like to score in?" << endl;
+            cin >> rowColourChosen;
+
+            if(rowColourChosen == "red" && redCanBeScored){
+                rowColourTypeChosen = Colour::RED;
+                rowColourChosenIsCorrect = true;
+            }else if(rowColourChosen == "yellow" && yellowCanBeScored){
+                rowColourTypeChosen = Colour::YELLOW;
+                rowColourChosenIsCorrect = true;
+            }else if(rowColourChosen == "blue" && blueCanBeScored){
+                rowColourTypeChosen = Colour::BLUE;
+                rowColourChosenIsCorrect = true;
+            }else
+                cout << "No such colour exists or you are not allowed to choose that colour!" << endl;
+        }
+        cout << "Choose what index you want to place the sum of the rolls!" << endl;
+        cin >> indexToScoreIn;
+        hasBeenScored = qss.score(rollOfDice, rowColourTypeChosen, indexToScoreIn);
+        if(!hasBeenScored && (redCanBeScored + yellowCanBeScored + blueCanBeScored) > 1){
+            cout << "Would you like to leave row? Type Yes or No:" << endl;
+            cin >> leaveRow;
+            if (leaveRow == "yes")
+                rowColourChosenIsCorrect = false;
+                
+        }
+    }
+    isActive = false; //player becomes inActive as he rolled
 }
     
