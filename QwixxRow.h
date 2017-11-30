@@ -22,11 +22,48 @@
  
 template <class T, Colour colour>
 class QwixxRow {
-    T container;
+    vector<T> vContainer;
+    list<T> lContainer;
     string a[11] = {" 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12"};
     public:
 	
-	QwixxRow& operator+= (const RollOfDice& rollofdice);
+	QwixxRow& operator+= (const RollOfDice& rollofdice) {
+            string msg = "Your roll has more than 2 dice and can't be used to scored";
+		if (rollofdice.diceVec.size() > 2 ) {
+                    throw length_error(msg);
+		}
+                
+                int rd = static_cast<int>(rollofdice);
+                
+                vector<T> tmpVec;
+                list<T> tmpList;
+                
+                switch (colour) {
+                    case Colour::RED: case Colour::YELLOW:
+                        for (auto i : vContainer) {
+                            tmpVec.push_back(i);
+                        }
+                        if (tmpVec.back() < rd) {
+                            tmpVec.push_back(rd);
+                            vContainer = tmpVec;
+                        }
+                    break;
+                   
+                    case Colour::GREEN: case Colour::BLUE:
+                        for (auto i : lContainer) {
+                            tmpList.emplace_back(i);
+                        }
+                        if (tmpList.back() > rd) {
+                            tmpList.emplace_back(rd);
+                            lContainer = tmpList;
+                        } 
+                    break;
+                   
+                }
+                 
+            return *this;           
+    
+        }
 		
         
 	friend ostream& operator<< (ostream &os, QwixxRow &obj) {
@@ -39,7 +76,7 @@ class QwixxRow {
                 case Colour::RED: case Colour::YELLOW:
                     entryCounter = 0;
                     y = 0;
-                    for (auto x : obj.container) {
+                    for (auto x : obj.vContainer) {
                         for (y; y < 11; y++) {
                             if (obj.a[y] == to_string(x)) {
                                 obj.a[y] = "XX";
@@ -62,7 +99,7 @@ class QwixxRow {
                 case Colour::GREEN: case Colour::BLUE:
                     entryCounter = 0;
                     y = 11;
-                    for (auto x : obj.container) {
+                    for (auto x : obj.lContainer) {
                         for (y; y > 0; y--) {
                             if (obj.a[y] == to_string(x)) {
                                 obj.a[y] = "XX";
@@ -85,41 +122,5 @@ class QwixxRow {
             }
         }
     };
-    template<class vector, Colour colour>
-    QwixxRow& QwixxRow::operator+= (const RollOfDice& rollofdice) {
-                string msg = "Your roll has more than 2 dice and can't be used to scored";
-		if (rollofdice.diceVec.size() > 2 ) {
-                    throw length_error(msg);
-		}
-                
-                int rd = static_cast<int>(rollofdice);
-                
-                vector<int> tmpVec;
-                
-                switch (colour) {
-                    case Colour::RED: case Colour::YELLOW:
-                        for (auto i : container) {
-                            tmpVec.push_back(i);
-                        }
-                        if (tmpVec.back() < rd) {
-                            tmpVec.push_back(rd);
-                            container = tmpVec;
-                        }
-                    break;
-                    /*
-                    case Colour::GREEN: case Colour::BLUE:
-                        for (auto i : container) {
-                            tmpList.emplace_back(i);
-                        }
-                        if (tmpList.back() > rd) {
-                            tmpList.emplace_back(rd);
-                            container = tmpList;
-                        } 
-                    break;
-                     */
-                }
-                 
-            return *this;           
-    }
 #endif/* QWIXXROW_H */
     
