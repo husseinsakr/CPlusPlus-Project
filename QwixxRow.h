@@ -16,14 +16,14 @@
 #define QWIXXROW_H
  
 #include <list>
-
 #include "AllIncludes.h"
 #include "RollOfDice.h"
  
 template <class T, Colour colour>
 class QwixxRow {
-    T container;
-    string a[11] = {" 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12"};
+    T container = {0,0,0,0,0,0,0,0,0,0,0};
+    
+    
     public:
 	
 	QwixxRow operator+= (const RollOfDice& rollofdice){
@@ -33,8 +33,8 @@ class QwixxRow {
 		}
                 
                 int rd = static_cast<int>(rollofdice);
-                
-                
+              
+               
                 switch (colour) {
                     
                     case Colour::RED: case Colour::YELLOW:
@@ -42,6 +42,11 @@ class QwixxRow {
                             return *this;
                         }
                         else {
+                            
+                            container.at(rd - 2) = rd;
+                            cout << "inserting RD: " << rd << " into Vector container" << endl;
+                            
+                            return *this; 
                             
                         }
                     break;
@@ -52,20 +57,26 @@ class QwixxRow {
                             return *this;
                         }
                        else {
+                        
+                            container.at(rd - 2) = rd;
+                            cout << "inserting RD: " << rd << " into List container" << endl;
+                            cout << "List container has at back: " << container.back() << endl;
+                            
+                            return *this; 
                            
                        }
                     break;
                    
                 }
                  
-            return *this;           
+            //return *this;           
     
         };
         
 		
         
 	friend ostream& operator<< (ostream &os, QwixxRow &obj) {
-            string output; 
+            string output; string tmp;
             output = "|";
             int y = 0;
             int entryCounter = 0;
@@ -73,18 +84,25 @@ class QwixxRow {
             switch (colour) {
                 case Colour::RED: case Colour::YELLOW:
                     entryCounter = 0;
-                    y = 0;
+                    y = 2;
                     for (auto x : obj.container) {
-                        for (y; y < 11; y++) {
-                            if (obj.a[y] == to_string(x)) {
-                                obj.a[y] = "XX";
-                                entryCounter++;
-                            }
+                        if (x == 0 && y < 10) {
+                           tmp = " " + to_string(y) + "|";
+                           output += tmp;
                         }
+                        else if (x == 0 && y > 9) {
+                            tmp = to_string(y) + "|";
+                            output += tmp;
+                        }
+                        else if (x != 0) {
+                            entryCounter++;
+                            tmp = "XX|";
+                            output += tmp;
+                        }
+                        
+                        y++;   
                     }
-                    for (int i = 0; i < 11; i++) {
-                        output += obj.a[i] + "|";
-                    }
+                    
                     if (entryCounter == 5) {
                         output += " L";
                     }
@@ -96,18 +114,25 @@ class QwixxRow {
                 
                 case Colour::GREEN: case Colour::BLUE:
                     entryCounter = 0;
-                    y = 11;
+                    y = 12;
                     for (auto x : obj.container) {
-                        for (y; y > 0; y--) {
-                            if (obj.a[y] == to_string(x)) {
-                                obj.a[y] = "XX";
-                                entryCounter++;
-                            }
+                        if (x == 0 && y < 10) {
+                           tmp = " " + to_string(y) + "|";
+                           output += tmp;
                         }
+                        else if (x == 0 && y > 9) {
+                            tmp = to_string(y) + "|";
+                            output += tmp;
+                        }
+                        else if (x != 0) {
+                            entryCounter++;
+                            tmp = "XX|";
+                            output += tmp;
+                        }
+                        
+                        y--;
                     }
-                    for (int z = 11; z > 0; z--) {
-                        output += obj.a[z] + "|";
-                    }
+                  
                     if (entryCounter == 5) {
                         output += " L";
                     }

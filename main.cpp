@@ -35,6 +35,7 @@ int main() {
     RollOfDice rd;
     rd.pair(D1, D2);
     rd.roll();
+    /*
     cout << "D1 roll is after pairing" << D1 << endl;
     cout << "D2 roll is after pairing" << D2 << endl;
     int rollDice = static_cast<int>(rd);
@@ -42,6 +43,7 @@ int main() {
     cout << rollDice << endl;
     cout << "calling insertion operator:" << endl;
     cout << rd << endl;
+     */
     
     //ScoreSheet *scoreSheet;
     QwintoScoreSheet scoreSheet;
@@ -89,8 +91,29 @@ int main() {
     cout << scoreSheet;
     
     QwixxRow<vector<int>, Colour::RED> rRow;
+    QwixxRow<vector<int>, Colour::YELLOW> yRow;
+    QwixxRow<list<int>, Colour::GREEN> gRow;
+    QwixxRow<list<int>, Colour::BLUE> bRow;
+    
+    
     rRow += rd;
+    rd.roll();
+    rRow += rd;
+    rd.roll();
+    rRow += rd;
+    rd.roll();
+    rRow += rd;
+    rd.roll();
+    rRow += rd;
+    
+    
     cout << rRow;
+    cout << endl;
+    cout << yRow;
+    cout << endl;
+    cout << gRow; 
+    cout << endl;
+    cout << bRow;
     cout << endl;
     
     QwintoPlayer player1;
