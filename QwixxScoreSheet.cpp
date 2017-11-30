@@ -14,27 +14,31 @@
 
 bool QwixxScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int position) {
     bool result;
+    int rd = static_cast<int>(rollOfDice);
+    
     switch (colour) {
+        //searches through the row for rd, if it finds it return false, cant
+        //add a non unique score
         case Colour::RED:
-            if (this->redRow.container.at(position) = rollOfDice) {
+            if (find(this->redRow.container.begin(),this->redRow.container.end(), rd) != this->redRow.container.end()) {
                 result = false;
             }
             result = true;     
         break;
         case Colour::YELLOW:
-            if (this->redRow.container.at(position) = rollOfDice) {
+            if (find(this->yellowRow.container.begin(),this->yellowRow.container.end(), rd) != this->yellowRow.container.end()) {
                 result = false;
             }
             result = true; 
         break;
         case Colour::GREEN:
-            if (this->redRow.container.at(position) = rollOfDice) {
+            if (find(this->greenRow.container.begin(),this->greenRow.container.end(), rd) != this->greenRow.container.end()) {
                 result = false;
             }
             result = true; 
         break;
         case Colour::BLUE:
-            if (this->redRow.container.at(position) = rollOfDice) {
+            if (find(this->blueRow.container.begin(),this->blueRow.container.end(), rd) != this->blueRow.container.end()) {
                 result = false;
             }
             result = true; 
@@ -49,13 +53,45 @@ int QwixxScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
     
     //enters score returns booleans indicating if the dice can be scored
 bool QwixxScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position) {
-   return false; 
+    list<int>::iterator lFront; //list iterator for green and blue rows
+    int rd = static_cast<int>(rollOfDice);
+    //if the roll is validated and unique, goes to that position in the row
+    //and adds the rollofdice
+    if (validate(rollOfDice, colour, position)) {
+        switch (colour) {
+            case Colour::RED:
+                this->redRow.container.at(position) += rollOfDice;
+                return true;
+            break;
+            case Colour::YELLOW:
+                this->yellowRow.container.at(position) += rollOfDice;
+                return true;
+            break;
+            //insertion process different for list, need to use iterator and insert
+            case Colour::GREEN:
+                lFront = this->greenRow.container.begin();
+                advance(lFront, position);
+                this->greenRow.container.insert(lFront, rd);
+                return true;
+            break;
+            case Colour::BLUE:
+                lFront = this->blueRow.container.begin();
+                advance(lFront, position);
+                this->blueRow.container.insert(lFront, rd);
+                return true;
+            break;
+        }
+    }
+    return false; 
 }
 
 bool QwixxScoreSheet::operator! () {
         int elemCounter = 0;
         int rowCounter = 0;
         bool endRow = false;
+        //checks to see if there are at least 5 elements in each row
+        //if 2 or 12 depending on the row are locked changes endRow
+        //need both to increment rowCounter to simulate a locked row
 	for (auto i : redRow.container) {
 		if (i != 0) {
                     if (i == 12) {
