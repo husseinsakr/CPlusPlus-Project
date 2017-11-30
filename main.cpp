@@ -12,10 +12,6 @@
 
 using namespace std;
 
-/*
- * 
- */
-#include "QwintoScoreSheet.h"
 #include "QwintoPlayer.h"
 
 int main() {
