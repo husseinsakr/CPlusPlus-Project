@@ -17,6 +17,7 @@
 #include <vector>
 #include <random>
 #include <String>
+#include <algorithm>
 
 using namespace std;
 

@@ -36,9 +36,9 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
             for (int i = 1; i <= numberOfDice; i++) {
                 cout << "Dice " << i << " colour is: ";
                 cin >> diceColoursChosenByUser[i - 1];
-                    
+                transform(diceColoursChosenByUser[i - 1].begin(),diceColoursChosenByUser[i - 1].end(), diceColoursChosenByUser[i - 1].begin(), ::tolower);    
                 if (diceColoursChosenByUser[i - 1] != "red" && diceColoursChosenByUser[i - 1] != "yellow" //checks if the user pushed the right available colours
-                        && diceColoursChosenByUser[i - 1] != "blue") {  //need to figure out how to make strings lowercase
+                        && diceColoursChosenByUser[i - 1] != "blue") { 
                     i--; //decrement i to repeat call
                     cout << endl << "You have to enter either red, yellow or blue!" << endl;
                         
@@ -149,6 +149,7 @@ void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cout << " BLUE";
             cout << " rows!" << endl << "What row colour would you like to score in?" << endl;
             cin >> rowColourChosen;
+            transform(rowColourChosen.begin(),rowColourChosen.end(), rowColourChosen.begin(), ::tolower);
 
             if(rowColourChosen == "red" && redCanBeScored){
                 rowColourTypeChosen = Colour::RED;
@@ -162,12 +163,13 @@ void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }else
                 cout << "No such colour exists or you are not allowed to choose that colour!" << endl;
         }
-        cout << "Choose what index you want to place the sum of the rolls!" << endl;
+        cout << "Choose what index you want to place the sum of the rolls! Range: (0-10)" << endl;
         cin >> indexToScoreIn;
         hasBeenScored = qss.score(rollOfDice, rowColourTypeChosen, indexToScoreIn);
         if(!hasBeenScored && (redCanBeScored + yellowCanBeScored + blueCanBeScored) > 1){
             cout << "Would you like to leave row? Type Yes or No:" << endl;
             cin >> leaveRow;
+            transform(leaveRow.begin(),leaveRow.end(), leaveRow.begin(), ::tolower);
             if (leaveRow == "yes")
                 rowColourChosenIsCorrect = false;
                 
