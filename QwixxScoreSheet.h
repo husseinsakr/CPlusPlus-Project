@@ -19,6 +19,13 @@
 
 class QwixxScoreSheet : public ScoreSheet {
     
+public:
+    QwixxRow<vector<int>, Colour::RED> redRow;
+    QwixxRow<vector<int>, Colour::YELLOW> yelloRow;
+    QwixxRow<list<int>, Colour::GREEN> greenRow;
+    QwixxRow<list<int>, Colour::BLUE> blueRow;
+    
+    
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
     
     int calcTotal(int numberOfFailedThrows, int overallScore);
