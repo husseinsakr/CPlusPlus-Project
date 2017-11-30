@@ -13,6 +13,7 @@
 using namespace std;
 
 #include "QwintoPlayer.h"
+#include "QwixxRow.h"
 
 int main() {
     Dice D1 = {Colour::BLUE, RandomDice::lower};
@@ -86,6 +87,11 @@ int main() {
     
     
     cout << scoreSheet;
+    
+    QwixxRow<vector<int>, Colour::RED> rRow;
+    rRow += rd;
+    cout << rRow;
+    cout << endl;
     
     QwintoPlayer player1;
     player1.qss = scoreSheet;
