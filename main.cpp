@@ -16,6 +16,7 @@ using namespace std;
  * 
  */
 #include "QwintoScoreSheet.h"
+#include "QwintoPlayer.h"
 
 int main() {
     Dice D1 = {Colour::BLUE, RandomDice::lower};
@@ -52,7 +53,7 @@ int main() {
     scoreSheet.playerName = "Hussein";
     
     
-    
+    /*
     scoreSheet.redRow.arrayOfRolls[0] = 2;
     scoreSheet.redRow.arrayOfRolls[1] = 3;
     scoreSheet.redRow.arrayOfRolls[2] = 6;
@@ -85,9 +86,16 @@ int main() {
     scoreSheet.blueRow.arrayOfRolls[7] = 0;
     scoreSheet.blueRow.arrayOfRolls[8] = 10;
     scoreSheet.blueRow.arrayOfRolls[9] = 0;
+    */
     
     
     cout << scoreSheet;
+    
+    QwintoPlayer player1;
+    player1.qss = scoreSheet;
+    player1.isActive = true;
+    player1.inputAfterRoll(rd);
+    cout << player1.qss;
 
     return 0;
 }

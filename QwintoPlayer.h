@@ -18,12 +18,11 @@
 #include "QwintoScoreSheet.h"
 
 class QwintoPlayer : public Player {
-	QwintoScoreSheet qss;
-        void inputAfterRoll(RollOfDice &rollOfDice);
+	
 public:
+    QwintoScoreSheet qss;
+    void inputAfterRoll(RollOfDice &rollOfDice);
     void inputBeforeRoll(RollOfDice &rollOfDice);
-    
-    
 };
 
 #endif /* QWINTOPLAYER_H */
