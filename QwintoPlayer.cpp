@@ -163,7 +163,7 @@ void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }else
                 cout << "No such colour exists or you are not allowed to choose that colour!" << endl;
         }
-        cout << "Choose what index you want to place the sum of the rolls! Range: (0-10)" << endl;
+        cout << "Choose what index you want to place the sum of the rolls! Range: (0-9)" << endl;
         cin >> indexToScoreIn;
         hasBeenScored = qss.score(rollOfDice, rowColourTypeChosen, indexToScoreIn);
         if(!hasBeenScored && (redCanBeScored + yellowCanBeScored + blueCanBeScored) > 1){
