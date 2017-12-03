@@ -23,6 +23,7 @@ public:
     QwintoRow<Colour::BLUE> blueRow;
     QwintoRow<Colour::YELLOW> yellowRow;
         
+    QwintoScoreSheet();
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
     bool score(RollOfDice &rollOfDice, Colour colour, int position);
     bool operator! (); //returns true if the scoresheet indicates the game is done

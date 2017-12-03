@@ -12,6 +12,10 @@
 
 #include "QwintoPlayer.h"
 
+QwintoPlayer::QwintoPlayer(){
+    qss = QwintoScoreSheet();
+}
+
 void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
     if (isActive){ //if player is active
         int numberOfDice = 0;

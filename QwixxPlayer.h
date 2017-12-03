@@ -17,9 +17,11 @@
 #include "QwixxScoreSheet.h"
 
 class QwixxPlayer : public Player {
-    QwixxScoreSheet qxss;
-    void inputAfterRoll(RollOfDice &rollOfDice);
-    void inputBeforeRoll(RollOfDice &rollOfDice);
+    public:
+        QwixxPlayer();
+        QwixxScoreSheet qxss;
+        void inputAfterRoll(RollOfDice &rollOfDice);
+        void inputBeforeRoll(RollOfDice &rollOfDice);
 };
 
 #endif /* QWIXXPLAYER_H */

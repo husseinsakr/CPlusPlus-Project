@@ -12,6 +12,10 @@
 
 #include "QwixxPlayer.h"
 
+QwixxPlayer::QwixxPlayer(){
+    qxss = QwixxScoreSheet();
+}
+
 void QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     return;
 }

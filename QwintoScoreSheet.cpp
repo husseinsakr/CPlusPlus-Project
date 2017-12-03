@@ -15,7 +15,13 @@
 //ostream& operator<< (ostream &os, const QwintoScoreSheet &obj){
     //return obj.doprint(os);
 //}
-        
+    
+QwintoScoreSheet::QwintoScoreSheet(){
+    redRow = QwintoRow<Colour::RED>();
+    blueRow = QwintoRow<Colour::BLUE>();
+    yellowRow = QwintoRow<Colour::YELLOW>();
+}
+
 //helper method for setTotal
 int QwintoScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
     int redRowEntries = 0, blueRowEntries = 0, yellowRowEntries = 0; //variables to store entries
