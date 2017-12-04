@@ -33,9 +33,12 @@ RollOfDice RollOfDice::pair(Dice& one, Dice& two) {
 }
 ostream &operator<< (ostream& os, RollOfDice& rd) {
 	int i = 1;
+        int score = 0;
 	for (Dice d : rd.diceVec) {
 		os << "Dice " << i << " rolled: " << d.face << endl;
+                score += d.face;
 		i++;
 	}
+        os << "You have to score: " << score << endl;
 	return os;
 }

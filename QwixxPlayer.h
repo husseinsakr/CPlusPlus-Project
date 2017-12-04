@@ -20,8 +20,8 @@ class QwixxPlayer : public Player {
     public:
         QwixxPlayer();
         QwixxScoreSheet qxss;
-        void inputAfterRoll(RollOfDice &rollOfDice);
-        void inputBeforeRoll(RollOfDice &rollOfDice);
+        RollOfDice inputAfterRoll(RollOfDice &rollOfDice);
+        RollOfDice inputBeforeRoll(RollOfDice &rollOfDice);
 };
 
 #endif /* QWIXXPLAYER_H */

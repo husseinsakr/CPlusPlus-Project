@@ -16,9 +16,9 @@ QwixxPlayer::QwixxPlayer(){
     qxss = QwixxScoreSheet();
 }
 
-void QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
-    return;
+RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
+    return rollOfDice;
 }
-void QwixxPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
-    return;
+RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
+    return rollOfDice;
 }

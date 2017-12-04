@@ -124,7 +124,7 @@ class QwintoRow {
                             }
                             i++;
                         }
-                        os << output << endl;
+                        os << output;
                     break;
                     
                     case Colour::YELLOW:
@@ -165,7 +165,7 @@ class QwintoRow {
                             }
                             i++;
                         }
-                        os << output << endl;
+                        os << output;
                     break;
                     
                     case Colour::BLUE:
@@ -206,7 +206,7 @@ class QwintoRow {
                             }
                             i++;
                         }
-                        os << output << endl;
+                        os << output;
                     break;		
             }
             return os;

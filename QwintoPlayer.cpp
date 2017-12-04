@@ -16,10 +16,10 @@ QwintoPlayer::QwintoPlayer(){
     qss = QwintoScoreSheet();
 }
 
-void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
+RollOfDice QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
     if (isActive){ //if player is active
         int numberOfDice = 0;
-        cout << "How many dice do you want to roll?" << endl;
+        cout << qss.playerName << " you are the active player! How many dice do you want to roll?" << endl;
         while (true) {  //asks user how many dice he wants to roll
             cin >> numberOfDice;
             if (numberOfDice > 0 && numberOfDice < 4) {
@@ -34,23 +34,23 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
         string notRepetitiveColour = " ";
         
         if (numberOfDice != 3) { //asks user what dice colours he wants
-            cout << "Enter the colours of the dice you would like to use" << endl;
+            cout << "Enter the colours of the dice you would like to use!" << endl;
             
-            cout << "Dice colours: " << endl;
-            for (int i = 1; i <= numberOfDice; i++) {
-                cout << "Dice " << i << " colour is: ";
-                cin >> diceColoursChosenByUser[i - 1];
-                transform(diceColoursChosenByUser[i - 1].begin(),diceColoursChosenByUser[i - 1].end(), diceColoursChosenByUser[i - 1].begin(), ::tolower);    
-                if (diceColoursChosenByUser[i - 1] != "red" && diceColoursChosenByUser[i - 1] != "yellow" //checks if the user pushed the right available colours
-                        && diceColoursChosenByUser[i - 1] != "blue") { 
+            cout << "Dice colour options are: Red, Yellow, Blue: " << endl;
+            for (int i = 0; i < numberOfDice; i++) {
+                cout << "Dice " << i + 1 << " colour is: ";
+                cin >> diceColoursChosenByUser[i];
+                transform(diceColoursChosenByUser[i].begin(),diceColoursChosenByUser[i].end(), diceColoursChosenByUser[i].begin(), ::tolower);    
+                if (diceColoursChosenByUser[i] != "red" && diceColoursChosenByUser[i] != "yellow" //checks if the user pushed the right available colours
+                        && diceColoursChosenByUser[i] != "blue") { 
                     i--; //decrement i to repeat call
                     cout << endl << "You have to enter either red, yellow or blue!" << endl;
                         
-                } else if (i != 1){ //checks if user passes unique different dice colours
-                    for (int j = 0; j < i - 1; j++) {
+                } else if (i != 0){ //checks if user passes unique different dice colours
+                    for (int j = 0; j < i; j++) {
                         notRepetitiveColour = diceColoursChosenByUser[j];
-                        for (int k = j + 1; k < i; k++) {
-                            if(notRepetitiveColour != diceColoursChosenByUser[k]){
+                        for (int k = j + 1; k <= i; k++) {
+                            if(notRepetitiveColour == diceColoursChosenByUser[k]){
                                 i--; //decrement i to repeat call
                                 cout << endl << "Can't have two dice with the same colour!" << endl;
                             }
@@ -59,7 +59,7 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
                 }    
             }
             
-            for (int n = 0; n < sizeof(diceColoursChosenByUser); n++) { //makes a new array to match class Colour
+            for (int n = 0; n < numberOfDice; n++) { //makes a new array to match class Colour
                 if (diceColoursChosenByUser[n] == "red")
                     diceTypeColoursChosenByUser[n] = Colour::RED;
                 else if (diceColoursChosenByUser[n] == "yellow")
@@ -80,20 +80,25 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
             for (int x = 0; x < sizeof(diceTypeColoursChosenByUser); x++){
                 if(rollOfDice.diceVec[f].colour == diceTypeColoursChosenByUser[x]) { //making copy of dice to new RollOfDice
                     diceUserWillRoll.diceVec.push_back(rollOfDice.diceVec[f]);
+                    break;
                 }
             }
         }
         
         diceUserWillRoll.roll(); //user rolls the dice
+        cout << diceUserWillRoll << endl; //print the roll for all users to see
         inputAfterRoll(diceUserWillRoll); //calls inputAfterRoll for everybody to score in their scoreSheet
+        return diceUserWillRoll;
     }
+    return rollOfDice;
 }
-void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
+RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     bool redCanBeScored = false;
     bool yellowCanBeScored = false;
     bool blueCanBeScored = false;
     bool hasBeenScored = false;
     bool rowColourChosenIsCorrect = false;
+    bool indexToScoreInIsCorrect = false;
     bool canUserScore = false;
     string arrayOfScorableColours[3];
     string rowColourChosen = " ";
@@ -136,14 +141,21 @@ void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                     break;
                 }
             }
-            
         }
-        if (!canUserScore){  //if user can't score increment number of failed throws and break from while loop
+        if (!canUserScore && isActive){  //if user can't score increment number of failed throws and break from while loop
+            cout << "Here is " << qss.playerName << "'s scoresheet!" << endl << qss
+                    << "You can't score so you get a failed throw! To the next player!" << endl;
             qss.numberOfFailedThrows++;
+            break;
+        } else if (!canUserScore && !isActive){
+            cout << "Here is " << qss.playerName << "'s scoresheet!" << endl << qss
+                    << "You can't score so on to the next player!" << endl;
             break;
         }
         
-        while(!rowColourChosenIsCorrect){ //user asked to choose a row colour
+        while(!rowColourChosenIsCorrect){ //asking user to choose a row colour
+            cout << "Here is your scoresheet!" << endl << qss;
+            
             cout << "You can only score in:";
             if (redCanBeScored)
                 cout << " RED";
@@ -167,18 +179,29 @@ void QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }else
                 cout << "No such colour exists or you are not allowed to choose that colour!" << endl;
         }
-        cout << "Choose what index you want to place the sum of the rolls! Range: (0-9)" << endl;
-        cin >> indexToScoreIn;
-        hasBeenScored = qss.score(rollOfDice, rowColourTypeChosen, indexToScoreIn);
-        if(!hasBeenScored && (redCanBeScored + yellowCanBeScored + blueCanBeScored) > 1){
-            cout << "Would you like to leave row? Type Yes or No:" << endl;
-            cin >> leaveRow;
-            transform(leaveRow.begin(),leaveRow.end(), leaveRow.begin(), ::tolower);
-            if (leaveRow == "yes")
-                rowColourChosenIsCorrect = false;
-                
+        while (!indexToScoreInIsCorrect){  //asking user for index
+            cout << "Choose what index you want to place the sum of the rolls! Range: (0-9)" << endl;
+            cin >> indexToScoreIn;
+            if (indexToScoreIn >= 0 && indexToScoreIn < 10)
+                indexToScoreInIsCorrect = qss.score(rollOfDice, rowColourTypeChosen, indexToScoreIn);
+            else
+                cout << "You can't score there!" << endl;
+            if(!indexToScoreInIsCorrect && (redCanBeScored + yellowCanBeScored + blueCanBeScored) > 1){
+                cout << "Would you like to leave row? Type Yes or No:" << endl;
+                cin >> leaveRow;
+                transform(leaveRow.begin(),leaveRow.end(), leaveRow.begin(), ::tolower);
+                if (leaveRow == "yes") {
+                    rowColourChosenIsCorrect = false;
+                    break;
+                }
+            }
+        }
+        if(indexToScoreInIsCorrect){
+            cout << "You have scored in index " << indexToScoreIn << "!" << endl << "Inactive players are allowed to score now!" << endl;
+            break;
         }
     }
     isActive = false; //player becomes inActive as he rolled
+    return rollOfDice;
 }
     

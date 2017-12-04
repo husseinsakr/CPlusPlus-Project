@@ -22,8 +22,8 @@ class QwintoPlayer : public Player {
 public:
     QwintoScoreSheet qss;
     QwintoPlayer();
-    void inputAfterRoll(RollOfDice &rollOfDice);
-    void inputBeforeRoll(RollOfDice &rollOfDice);
+    RollOfDice inputAfterRoll(RollOfDice &rollOfDice);
+    RollOfDice inputBeforeRoll(RollOfDice &rollOfDice);
 };
 
 #endif /* QWINTOPLAYER_H */

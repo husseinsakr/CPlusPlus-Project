@@ -22,6 +22,7 @@ ostream &operator<< (ostream &os, const ScoreSheet &obj) {
     os << "Failed throws: ";
     for (int i = 1; i <= obj.numberOfFailedThrows; i++)
         os << i << " ";
+    os << endl;
     return os;
 }
 

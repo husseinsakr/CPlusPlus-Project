@@ -33,16 +33,16 @@ public:
     ostream& doprint(ostream& os) const {
         os << "               ------------------------------- " << endl;
         os << "Red            " << redRow << endl;
-	os << "            ------------------------------- " << endl;
+	os << "            ---------------------------------- " << endl;
 	os << "Yellow      " << yellowRow << endl;
-	os << "         ------------------------------- " << endl;
+	os << "         ---------------------------------- " << endl;
 	os << "Blue     " << blueRow << endl;
-	os << "         ---------------------------- " << endl;
+	os << "         ------------------------------- " << endl;
         return os;
     }
     
     friend ostream& operator<<(ostream &os, const QwintoScoreSheet &aQwintoScoreSheet) {
-        return aQwintoScoreSheet.doprint(os);
+        os << static_cast<const ScoreSheet &>(aQwintoScoreSheet);
     }
     
 };
