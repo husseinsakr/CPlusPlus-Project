@@ -99,7 +99,9 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     bool hasBeenScored = false;
     bool rowColourChosenIsCorrect = false;
     bool indexToScoreInIsCorrect = false;
+    bool userDoesntWantToScore = false;
     bool canUserScore = false;
+    string askInactiveUserIfHeWantsToScore = "";
     string arrayOfScorableColours[3];
     string rowColourChosen = " ";
     Colour rowColourTypeChosen;
@@ -154,7 +156,7 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
         }
         
         while(!rowColourChosenIsCorrect){ //asking user to choose a row colour
-            cout << "Here is your scoresheet!" << endl << qss;
+            cout << endl << "Here is your scoresheet!" << endl << qss;
             
             cout << "You can only score in:";
             if (redCanBeScored)
@@ -163,7 +165,21 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cout << " YELLOW";
             if (blueCanBeScored)
                 cout << " BLUE";
-            cout << " rows!" << endl << "What row colour would you like to score in?" << endl;
+            
+            cout << " rows!" << endl;
+            if (!isActive){
+                cout << "Would you like to score at all this turn(Yes or No)?" << endl;
+                cin >> askInactiveUserIfHeWantsToScore;
+                transform(askInactiveUserIfHeWantsToScore.begin(),askInactiveUserIfHeWantsToScore.end(),
+                        askInactiveUserIfHeWantsToScore.begin(), ::tolower);
+                if(askInactiveUserIfHeWantsToScore == "no"){
+                    indexToScoreInIsCorrect = true;
+                    userDoesntWantToScore = true;
+                    break;
+                }
+                    
+            }
+            cout << "What row colour would you like to score in?" << endl;
             cin >> rowColourChosen;
             transform(rowColourChosen.begin(),rowColourChosen.end(), rowColourChosen.begin(), ::tolower);
 
@@ -197,6 +213,8 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }
         }
         if(indexToScoreInIsCorrect){
+            if(userDoesntWantToScore)
+                break;
             cout << "You have scored in index " << indexToScoreIn << "!" << endl << "Inactive players are allowed to score now!" << endl;
             break;
         }
