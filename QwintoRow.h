@@ -41,6 +41,11 @@ class QwintoRow {
                 cout << "Cant place rolls in an illegal spot!" << endl;
                 return false;    
             }
+            
+            if (arrayOfRolls[index] != 0){
+                cout << "There is a number there already!" << endl;
+                return false;
+            }
     
             if (index != 0){
                 int smallerThanRoll = arrayOfRolls[0];
@@ -63,7 +68,7 @@ class QwintoRow {
                     if (i == illegalIndex){ i++; }
                     if(i != index && arrayOfRolls[i] != 0) {
                         biggerThanRoll = arrayOfRolls[i];
-                        if (biggerThanRoll >= rollOfDice){
+                        if (biggerThanRoll <= rollOfDice){
                             cout << "There is a smaller number on the right!" << endl;
                             return false;
                         }

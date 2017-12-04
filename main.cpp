@@ -89,20 +89,20 @@ int main() {
      
     if(versionOfGame == "qwinto"){
         while (true){
-            
             for(int i = 0; i < numberOfPlayers; i++){ //loop to check if game is over
                 if(!(qwintoPlayers[i].qss)){ //if game is over break loop
                     cout << "Game is over!" << endl;
                     break;
                 }
             }
-            qwintoPlayers[activeUser++].isActive = true; //sets player to active
-            diceRolled = qwintoPlayers[activeUser - 1].inputBeforeRoll(dice); //getting input from active user
+            qwintoPlayers[activeUser].isActive = true; //sets player to active
+            diceRolled = qwintoPlayers[activeUser].inputBeforeRoll(dice); //getting input from active user
             for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
-                if(j != (activeUser - 1)){
+                if(j != (activeUser)){
                     qwintoPlayers[j].inputAfterRoll(diceRolled);
                 }
             }
+            activeUser = (activeUser+1) % numberOfPlayers;
         }
         
         int maxScore = 0, positionOfWinnderInArray;

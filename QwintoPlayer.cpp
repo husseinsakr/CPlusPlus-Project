@@ -215,7 +215,9 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
         if(indexToScoreInIsCorrect){
             if(userDoesntWantToScore)
                 break;
-            cout << "You have scored in index " << indexToScoreIn << "!" << endl << "Inactive players are allowed to score now!" << endl;
+            cout << "You have scored in index " << indexToScoreIn << "!" << endl;
+            if(isActive)
+                cout << "Inactive players are allowed to score now!" << endl;
             break;
         }
     }
