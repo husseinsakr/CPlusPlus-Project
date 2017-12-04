@@ -22,6 +22,12 @@ RollOfDice QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
         cout << qss.playerName << " you are the active player! How many dice do you want to roll?" << endl;
         while (true) {  //asks user how many dice he wants to roll
             cin >> numberOfDice;
+            if(!cin){
+                // user didn't input a number
+                cin.clear(); // reset failbit
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); //skip bad input
+                // next, request user reinput
+            }
             if (numberOfDice > 0 && numberOfDice < 4) {
                 break;
             } else {
