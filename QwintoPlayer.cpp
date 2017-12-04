@@ -77,7 +77,7 @@ RollOfDice QwintoPlayer::inputBeforeRoll(RollOfDice &rollOfDice) {
         //make rollOfDice using pair than roll!
         RollOfDice diceUserWillRoll; //user will roll these dice from all dices
         for (int f = 0; f < rollOfDice.diceVec.size(); f++){  //taking only the dices the user will roll
-            for (int x = 0; x < sizeof(diceTypeColoursChosenByUser); x++){
+            for (int x = 0; x < numberOfDice; x++){
                 if(rollOfDice.diceVec[f].colour == diceTypeColoursChosenByUser[x]) { //making copy of dice to new RollOfDice
                     diceUserWillRoll.diceVec.push_back(rollOfDice.diceVec[f]);
                     break;
