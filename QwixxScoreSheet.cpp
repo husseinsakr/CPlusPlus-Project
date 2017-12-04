@@ -48,7 +48,75 @@ bool QwixxScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int positi
 }
     
 int QwixxScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
-    return 1;
+    int result = 0; //score to be returned
+    int pointCounter = 0; //for adding points to overall
+    int entryCounter = 0; //for determining if you have to add 1 more for a lock
+    bool lockTrack = false; //tracking if the final element in the row has been added
+    
+    for (auto x : this->redRow.container) {
+        if (x != 0) {
+            entryCounter++;
+            pointCounter++;
+            overallScore += pointCounter;
+        }
+        if (x == 12) {
+            lockTrack = true;
+        }
+    }
+    if (lockTrack && entryCounter >= 5) {
+        pointCounter++;
+        overallScore += pointCounter;
+    }
+    pointCounter = 0;//Reset both counters for new rows
+    entryCounter = 0;
+    for (auto x : this->yellowRow.container) {
+        if (x != 0) {
+            entryCounter++;
+            pointCounter++;
+            overallScore += pointCounter;
+        }
+        if (x == 12) {
+            lockTrack = true;
+        }
+    }
+    if (lockTrack && entryCounter >= 5) {
+        pointCounter++;
+        overallScore += pointCounter;
+    }
+    pointCounter = 0;
+    entryCounter = 0;
+    for (auto x : this->greenRow.container) {
+        if (x != 0) {
+            entryCounter++;
+            pointCounter++;
+            overallScore += pointCounter;
+        }
+        if (x == 2) {
+            lockTrack = true;
+        }
+    }
+    if (lockTrack && entryCounter >= 5) {
+        pointCounter++;
+        overallScore += pointCounter;
+    }
+    pointCounter = 0;
+    entryCounter = 0;
+    for (auto x : this->blueRow.container) {
+        if (x != 0) {
+            entryCounter++;
+            pointCounter++;
+            overallScore += pointCounter;
+        }
+        if (x == 2) {
+            lockTrack = true;
+        }
+    }
+    if (lockTrack && entryCounter >= 5) {
+        pointCounter++;
+        overallScore += pointCounter;
+    }
+    result = overallScore - (5*numberOfFailedThrows);
+    return result;
 }
     
     //enters score returns booleans indicating if the dice can be scored

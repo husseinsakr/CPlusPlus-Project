@@ -22,8 +22,13 @@ template <class T, Colour colour>
 class QwixxRow {
     public:
 	T container = {0,0,0,0,0,0,0,0,0,0,0};
+        
 	QwixxRow operator+= (const RollOfDice& rollofdice){
-             bool add = true;
+            //iterators of type depending on row initialized to allow for inserting
+            //into the container
+           const vector<int>::iterator vFront = container.begin();
+           const list<int>::iterator lFront = container.begin();
+            bool add = true;
              string msg = "Your roll has more than 2 dice and can't be used to scored";
 		if (rollofdice.diceVec.size() > 2 ) {
                     throw length_error(msg);
@@ -35,18 +40,21 @@ class QwixxRow {
                 switch (colour) {
                     
                     case Colour::RED: case Colour::YELLOW:
+                        //if it is already present in the container dont add again
                         if (find(container.begin(), container.end(), rd) != container.end()) {
                             return *this;
                         }
                         else {
+                            //if values are present to the right of this position dont add
                             for (int i = (rd - 2); i < 11; i++) {
-                                if (container.at(i)) {
+                                advance(vFront, i);
+                                if (*vFront != 0) {
                                     add = false;
                                 }
                             }
                             if (add) {
-                                container.at(rd - 2) = rd;
-                                cout << "inserting RD: " << rd << " into Vector container" << endl;
+                                container.insert(vFront, rd);
+                             
                             }
                             return *this; 
                             
@@ -60,13 +68,14 @@ class QwixxRow {
                         }
                        else {
                            for (int i = (rd-2); i > 0; i--) {
-                               if (container.at(i)) {
+                               advance(lFront, i);
+                               if (*lFront != 0) {
                                     add = false;
                                 }
                            }
                            if (add) {
-                                container.at(rd - 2) = rd;
-                                cout << "inserting RD: " << rd << " into List container" << endl;
+                               container.insert(lFront, rd);
+                                 
                            }
                             return *this; 
                            
