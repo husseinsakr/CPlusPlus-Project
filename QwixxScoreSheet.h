@@ -25,7 +25,7 @@ public:
     QwixxRow<list<int>, Colour::GREEN> greenRow;
     QwixxRow<list<int>, Colour::BLUE> blueRow;
     
-    
+    QwixxScoreSheet();
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
     
     int calcTotal();
@@ -52,7 +52,7 @@ public:
      
     //functions
     friend ostream& operator<< (ostream &os, const QwixxScoreSheet &aQwixxScoreSheet) {
-        return aQwixxScoreSheet.doprint(os);
+        os << static_cast<const ScoreSheet &>(aQwixxScoreSheet);
     }
 };
 

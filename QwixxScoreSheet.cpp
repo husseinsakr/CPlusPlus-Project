@@ -12,6 +12,13 @@
 
 #include "QwixxScoreSheet.h"
 
+QwixxScoreSheet::QwixxScoreSheet() {
+    redRow = QwixxRow<vector<int>, Colour::RED>();
+    yellowRow = QwixxRow<vector<int>, Colour::YELLOW>();
+    greenRow = QwixxRow<list<int>, Colour::GREEN>();
+    blueRow = QwixxRow<list<int>, Colour::BLUE>();
+}
+
 bool QwixxScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int position) {
     bool result;
     int rd = static_cast<int>(rollOfDice);
