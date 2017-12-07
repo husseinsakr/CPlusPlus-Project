@@ -28,7 +28,7 @@ public:
     
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);
     
-    int calcTotal(int numberOfFailedThrows, int overallScore);
+    int calcTotal();
     
     
     bool score(RollOfDice &rollOfDice, Colour colour, int position);

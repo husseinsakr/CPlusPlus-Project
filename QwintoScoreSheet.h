@@ -28,7 +28,7 @@ public:
     bool score(RollOfDice &rollOfDice, Colour colour, int position);
     bool operator! (); //returns true if the scoresheet indicates the game is done
     
-    int calcTotal(int numberOfFailedThrows, int overallScore); //helper method for setTotal
+    int calcTotal(); //helper method for setTotal
     
     ostream& doprint(ostream& os) const {
         os << "               ------------------------------- " << endl;

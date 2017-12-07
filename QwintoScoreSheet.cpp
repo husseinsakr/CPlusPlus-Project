@@ -23,7 +23,7 @@ QwintoScoreSheet::QwintoScoreSheet(){
 }
 
 //helper method for setTotal
-int QwintoScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
+int QwintoScoreSheet::calcTotal() {
     int redRowEntries = 0, blueRowEntries = 0, yellowRowEntries = 0; //variables to store entries
     int max = 0; //used variable for the bonus columns
     
@@ -94,24 +94,30 @@ bool QwintoScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int posit
         case Colour::RED:
             validate = redRow.validate(position, rollOfDice);
             if (position >= 0 && position <= 7 && validate) { //column overlap check
-                if(yellowRow.arrayOfRolls[position + 1] == rollOfDice && blueRow.arrayOfRolls[position + 2] == rollOfDice)
+                if(yellowRow.arrayOfRolls[position + 1] == rollOfDice){
+                    cout << "Can't have a number repeat in an overlapping column!" << endl;
                     validate = false;
+                }
             }
         break;       
 
         case Colour::YELLOW:
             validate = yellowRow.validate(position, rollOfDice);
             if (position >= 1 && position <= 8 && validate) { //column overlap check
-                if(redRow.arrayOfRolls[position - 1] == rollOfDice && blueRow.arrayOfRolls[position + 1] == rollOfDice)
+                if(redRow.arrayOfRolls[position - 1] == rollOfDice || blueRow.arrayOfRolls[position + 1] == rollOfDice){
+                    cout << "Can't have a number repeat in an overlapping column!" << endl;
                     validate = false;
+                }
             }
         break;
 
         case Colour::BLUE:
             validate = blueRow.validate(position, rollOfDice);
             if (position >= 2 && position <= 9 && validate) { //column overlap check
-                if(redRow.arrayOfRolls[position - 2] == rollOfDice && yellowRow.arrayOfRolls[position - 1] == rollOfDice)
+                if(yellowRow.arrayOfRolls[position - 1] == rollOfDice){
+                    cout << "Can't have a number repeat in an overlapping column!" << endl;
                     validate = false;
+                }
             }
         break;
     }

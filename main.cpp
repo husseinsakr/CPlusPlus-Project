@@ -92,7 +92,7 @@ int main() {
         while (!gameIsOver){
             for(int i = 0; i < numberOfPlayers; i++){ //loop to check if game is over
                 if(!qwintoPlayers[i].qss){ //if game is over break loop
-                    cout << "Game is over!" << endl;
+                    cout << "Game is over! Here are your scoresheets!" << endl << endl;
                     gameIsOver = true;
                 }
             }

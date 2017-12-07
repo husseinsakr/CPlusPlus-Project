@@ -131,7 +131,6 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     while (!hasBeenScored){
         
         cout << "--------------Verifying if you can even score! Please Ignore --------------"<<endl;
-        cout << "---------------------------------------------------------------------------"<<endl << endl;
         for (int j = 0; j <= 10; j++) { //checks if the user can score or not
             if(redCanBeScored) {
                 canUserScore = qss.validate(rollOfDice, Colour::RED, j);
@@ -152,6 +151,7 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 }
             }
         }
+        cout << "---------------------------------------------------------------------------"<<endl << endl;
         //
         if (!canUserScore && isActive){  //if user can't score increment number of failed throws and break from while loop
             cout << "Here is " << qss.playerName << "'s scoresheet!" << endl << qss

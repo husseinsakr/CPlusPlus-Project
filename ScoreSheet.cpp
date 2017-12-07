@@ -27,5 +27,5 @@ ostream &operator<< (ostream &os, const ScoreSheet &obj) {
 }
 
 int ScoreSheet::setTotal() {
-    return calcTotal(numberOfFailedThrows, overallScore);
+    return calcTotal();
 }

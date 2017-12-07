@@ -27,7 +27,7 @@ public:
     
     virtual bool validate(RollOfDice &rollOfDice, Colour colour, int position) = 0;
     
-    virtual int calcTotal(int numberOfFailedThrows, int overallScore) = 0; //helper method for setTotal
+    virtual int calcTotal() = 0; //helper method for setTotal
     
     //enters score returns booleans indicating if the dice can be scored
     virtual bool score(RollOfDice &rollOfDice, Colour colour, int position = -1) = 0;

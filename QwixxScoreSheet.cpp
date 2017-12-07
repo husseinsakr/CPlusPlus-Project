@@ -47,7 +47,7 @@ bool QwixxScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int positi
     return result;
 }
     
-int QwixxScoreSheet::calcTotal(int numberOfFailedThrows, int overallScore) {
+int QwixxScoreSheet::calcTotal() {
     int result = 0; //score to be returned
     int pointCounter = 0; //for adding points to overall
     int entryCounter = 0; //for determining if you have to add 1 more for a lock
