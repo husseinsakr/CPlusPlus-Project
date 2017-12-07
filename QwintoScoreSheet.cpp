@@ -170,6 +170,6 @@ bool QwintoScoreSheet::operator! () {
 	if (elemCounter == 9) {
 		rowCounter++;
 	}
-	return (!numberOfFailedThrows == 4 || !rowCounter == 2); 	
+	return (numberOfFailedThrows == 4 || rowCounter == 2); 	
 }
     

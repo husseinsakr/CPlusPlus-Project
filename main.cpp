@@ -25,6 +25,7 @@ int main() {
     bool userChoseVersionOfGame = false;
     bool userChoseNumberOfPlayers = false;
     bool userNamedThePlayers = false;
+    bool gameIsOver = false;
     int activeUser = 0;
     while (true){ //asking user to choose game version, number of players and name of players
         if (!userChoseVersionOfGame){ //checks if the user gave the correct input, loops if he/she didnt
@@ -88,24 +89,26 @@ int main() {
     }
      
     if(versionOfGame == "qwinto"){
-        while (true){
+        while (!gameIsOver){
             for(int i = 0; i < numberOfPlayers; i++){ //loop to check if game is over
-                if(!(qwintoPlayers[i].qss)){ //if game is over break loop
+                if(!qwintoPlayers[i].qss){ //if game is over break loop
                     cout << "Game is over!" << endl;
-                    break;
+                    gameIsOver = true;
                 }
             }
-            qwintoPlayers[activeUser].isActive = true; //sets player to active
-            diceRolled = qwintoPlayers[activeUser].inputBeforeRoll(dice); //getting input from active user
-            for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
-                if(j != (activeUser)){
-                    qwintoPlayers[j].inputAfterRoll(diceRolled);
+            if(!gameIsOver){
+                qwintoPlayers[activeUser].isActive = true; //sets player to active
+                diceRolled = qwintoPlayers[activeUser].inputBeforeRoll(dice); //getting input from active user
+                for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
+                    if(j != (activeUser)){
+                        qwintoPlayers[j].inputAfterRoll(diceRolled);
+                    }
                 }
+                activeUser = (activeUser+1) % numberOfPlayers;
             }
-            activeUser = (activeUser+1) % numberOfPlayers;
         }
-        
-        int maxScore = 0, positionOfWinnderInArray;
+        //NEED TO FIX THIS
+        int maxScore = 0, positionOfWinnderInArray = 0;
         for (int k = 0; k < numberOfPlayers; k++){
             qwintoPlayers[k].qss.setTotal();
             if (maxScore < qwintoPlayers[k].qss.overallScore){
@@ -116,7 +119,8 @@ int main() {
         }
         
         cout << "Congratulations " << qwintoPlayers[positionOfWinnderInArray].qss.playerName
-                << "! You are the winner of this game!" << endl; 
+                << "! You are the winner of this game with " << qwintoPlayers[positionOfWinnderInArray].qss.overallScore << " points!"<<endl; 
+        
     } else {
         while (true){
             
