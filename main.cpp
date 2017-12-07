@@ -50,12 +50,14 @@ int main() {
                     Dice yellowDice(Colour::YELLOW, 6);
                     Dice blueDice(Colour::BLUE, 6);
                     Dice greenDice(Colour::GREEN, 6);
-                    Dice whiteDice(Colour::WHITE, 6);
+                    Dice whiteDice1(Colour::WHITE, 6);
+                    Dice whiteDice2(Colour::WHITE, 6);
                     dice.diceVec.push_back(redDice);
                     dice.diceVec.push_back(yellowDice);
                     dice.diceVec.push_back(blueDice);
                     dice.diceVec.push_back(greenDice);
-                    dice.diceVec.push_back(whiteDice);
+                    dice.diceVec.push_back(whiteDice1);
+                    dice.diceVec.push_back(whiteDice2);
                 }  
             }
         } else if (!userChoseNumberOfPlayers) { //checks if the user gave the correct input, loops if he/she didnt

@@ -25,10 +25,10 @@ void RollOfDice::roll() {
 		d.roll(); //should be d.roll()
 	}
 }
-RollOfDice RollOfDice::pair(Dice& one, Dice& two) {
+RollOfDice RollOfDice::pair(Dice one, Dice two) {
 	RollOfDice rd;
-	diceVec.push_back(one);
-	diceVec.push_back(two);
+	rd.diceVec.push_back(one);
+	rd.diceVec.push_back(two);
 	return rd;
 }
 ostream &operator<< (ostream& os, RollOfDice& rd) {

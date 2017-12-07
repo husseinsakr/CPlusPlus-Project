@@ -20,7 +20,7 @@ struct RollOfDice {
 public:
 	operator int() const;
 	void roll(); //calls roll on all the dice in the container
-	RollOfDice pair(Dice& one, Dice& two);	//takes two dices and puts them in a vector (container)
+	RollOfDice pair(Dice one, Dice two);	//takes two dices and puts them in a vector (container)
 	friend ostream &operator<< (ostream& os, RollOfDice &rd);
 };
 
