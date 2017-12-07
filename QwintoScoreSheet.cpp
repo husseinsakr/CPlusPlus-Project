@@ -94,7 +94,7 @@ bool QwintoScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int posit
         case Colour::RED:
             validate = redRow.validate(position, rollOfDice);
             if (position >= 0 && position <= 7 && validate) { //column overlap check
-                if(yellowRow.arrayOfRolls[position + 1] == rollOfDice){
+                if(yellowRow.arrayOfRolls[position + 1] == rollOfDice || blueRow.arrayOfRolls[position + 2] == rollOfDice){
                     cout << "Can't have a number repeat in an overlapping column!" << endl;
                     validate = false;
                 }
@@ -114,7 +114,7 @@ bool QwintoScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int posit
         case Colour::BLUE:
             validate = blueRow.validate(position, rollOfDice);
             if (position >= 2 && position <= 9 && validate) { //column overlap check
-                if(yellowRow.arrayOfRolls[position - 1] == rollOfDice){
+                if(redRow.arrayOfRolls[position - 2] == rollOfDice || yellowRow.arrayOfRolls[position - 1] == rollOfDice){
                     cout << "Can't have a number repeat in an overlapping column!" << endl;
                     validate = false;
                 }
