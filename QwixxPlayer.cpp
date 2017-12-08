@@ -277,6 +277,11 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 rowColourChosenIsCorrect = false;
                 break;
             } else {
+                if(userChoseToScoreWith == 1)
+                    userScoredColourAndWhite = true;
+                else
+                    userScoredWhiteCombination = true;
+                    
                 string activeWantsToScoreAgain = "";
                 hasBeenScored++;
                 cout << "You scored! " << endl;

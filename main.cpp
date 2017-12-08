@@ -136,7 +136,7 @@ int main() {
             dice = qwixxPlayers[activeUser - 1].inputBeforeRoll(dice); //getting input from active user
             for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
                 if(j != (activeUser - 1)){
-                    qwixxPlayers[j].inputAfterRoll(dice);
+                    dice = qwixxPlayers[j].inputAfterRoll(dice);
                 }
             }
         }
