@@ -251,11 +251,24 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }else if(rowColourChosen == "blue" && blueCanBeScored){
                 rowColourTypeChosen = Colour::BLUE;
                 rowColourChosenIsCorrect = true;
-            }else
+            }else{
                 cout << "No such colour exists or you are not allowed to choose that colour!" << endl;
+                if ((!userScoredColourAndWhite && (canUserScoreColourWithWhite1 || canUserScoreColourWithWhite2)) && (canUserScoreWhiteAndWhite && !userScoredWhiteCombination)){
+                    string leaveThisOption = "";
+                    cout << "Do you want to get out of this option of scoring? (type Yes or No)" << endl;
+                    cin >> leaveThisOption;
+                    transform(leaveThisOption.begin(),leaveThisOption.end(), leaveThisOption.begin(), ::tolower);
+                    if (leaveThisOption == "yes"){
+                        userChoseWhatToScore = false;
+                        rowColourChosenIsCorrect = false;
+                        indexToScoreInIsCorrect = false;
+                        break;
+                    }
+                }
+            }
         }
         
-        while (!indexToScoreInIsCorrect){  //asking user for index
+        while (!indexToScoreInIsCorrect && userChoseWhatToScore){  //asking user for index
             indexToScoreInIsCorrect = qxss.score(rollOfDiceToScore, rowColourTypeChosen, rollOfDiceToScore - 2);
             if(!indexToScoreInIsCorrect){
                 cout << "You couldn't score here! Leaving row!" << endl;
