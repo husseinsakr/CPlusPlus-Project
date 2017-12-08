@@ -144,6 +144,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cout << "\t1)A combination of a white and coloured dice" << endl;
             if(canUserScoreWhiteAndWhite && !userScoredWhiteCombination)
                 cout << "\t2)A combination of the white dice" << endl;
+            cout << "\t3)Take a failed throw" << endl;
             cout << "Type their respective numbers(1,2): ";
             cin >> userChoseToScoreWith;
             if(!cin){
@@ -152,12 +153,17 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n'); //skip bad input
                 // next, request user reinput
             }
-            if (userChoseToScoreWith > 0 && userChoseToScoreWith < 3){
+            if (userChoseToScoreWith > 0 && userChoseToScoreWith < 4){
                 
                 if(userChoseToScoreWith == 1 && !userScoredColourAndWhite){
                     userChoseWhatToScore = true;
                 }else if(userChoseToScoreWith == 2 && !userScoredWhiteCombination){
                     userChoseWhatToScore = true;
+                } else if(userChoseToScoreWith == 3){
+                    userDoesntWantToScore = true;
+                    qxss.numberOfFailedThrows++;
+                    cout << "You received a fail throw" << endl;
+                    break;
                 }
             } else { 
                 cout << "You can only choose the NUMBERS, type 1 or 2!" << endl;
