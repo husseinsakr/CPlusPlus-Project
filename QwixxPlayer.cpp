@@ -217,10 +217,11 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[whiteDice]]);
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[colouredDice]]);
+            rowColourTypeChosen = rollOfDice.diceVec[arrayOfDicePostionInVector[colouredDice]].colour;
         } else {
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[4]]);
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[5]]);
-            cout << "You have to score " << rollOfDiceToScore.diceVec[0].face + rollOfDiceToScore.diceVec[1].face << " in a row!" << endl;
+            cout << "You have to score " << rollOfDiceToScore.diceVec[0].face + rollOfDiceToScore.diceVec[1].face << " in a coloured row!" << endl;
         }
         while(!rowColourChosenIsCorrect){ //asking user to choose a row colour
             cout << "You can only score in:";
