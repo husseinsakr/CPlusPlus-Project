@@ -92,12 +92,12 @@ class QwixxRow {
         
 	friend ostream& operator<< (ostream &os,const QwixxRow &obj) {
             string output; string tmp;
-            output = "|";
             int y = 0;
             int entryCounter = 0;
             
             switch (colour) {
                 case Colour::RED: case Colour::YELLOW:
+                    output = "|";
                     entryCounter = 0;
                     y = 2;
                     for (auto x : obj.container) {
@@ -129,23 +129,28 @@ class QwixxRow {
                 
                 case Colour::GREEN: case Colour::BLUE:
                     entryCounter = 0;
-                    y = 12;
+                    y = 2;
                     for (auto x : obj.container) {
-                        if (x == 0 && y < 10) {
-                           tmp = " " + to_string(y) + "|";
-                           output += tmp;
+                        if (x == 0 &&  y < 10) {
+                            if (y < 13) {
+                                tmp = " " + to_string(y) + "|";
+                                output = tmp + output;
+                            }
+                            
                         }
                         else if (x == 0 && y > 9) {
-                            tmp = to_string(y) + "|";
-                            output += tmp;
+                            if (y < 13) {
+                                tmp = to_string(y) + "|";
+                                output = tmp + output;
+                            }
                         }
                         else if (x != 0) {
                             entryCounter++;
                             tmp = "XX|";
-                            output += tmp;
+                            output = tmp + output;
                         }
                         
-                        y--;
+                        y++;
                     }
                   
                     if (entryCounter == 5) {
@@ -154,6 +159,7 @@ class QwixxRow {
                     else {
                         output += " U";
                     }
+                    output = "|" + output;
                     os << output;
                 break; 
              return os;

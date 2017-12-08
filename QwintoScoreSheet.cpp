@@ -17,7 +17,48 @@
 int main() {
     QwintoScoreSheet* qss;
     qss = new QwintoScoreSheet();
+    (*qss).numberOfFailedThrows =3;
+    //(*qss).overallScore = 10;
+    (*qss).playerName = "Hussein";
+    
+    
+ 
+    (*qss).redRow.arrayOfRolls[0] = 2;
+    (*qss).redRow.arrayOfRolls[1] = 3;
+    (*qss).redRow.arrayOfRolls[2] = 6;
+    (*qss).redRow.arrayOfRolls[3] = 0;
+    (*qss).redRow.arrayOfRolls[4] = 9;
+    (*qss).redRow.arrayOfRolls[5] = 11;
+    (*qss).redRow.arrayOfRolls[6] = 12;
+    (*qss).redRow.arrayOfRolls[7] = 13;
+    (*qss).redRow.arrayOfRolls[8] = 15;
+    (*qss).redRow.arrayOfRolls[9] = 16;
+    
+    (*qss).yellowRow.arrayOfRolls[0] = 1;
+    (*qss).yellowRow.arrayOfRolls[1] = 3;
+    (*qss).yellowRow.arrayOfRolls[2] = 4;
+    (*qss).yellowRow.arrayOfRolls[3] = 5;
+    (*qss).yellowRow.arrayOfRolls[4] = 0;
+    (*qss).yellowRow.arrayOfRolls[5] = 0;
+    (*qss).yellowRow.arrayOfRolls[6] = 12;
+    (*qss).yellowRow.arrayOfRolls[7] = 13;
+    (*qss).yellowRow.arrayOfRolls[8] = 0;
+    (*qss).yellowRow.arrayOfRolls[9] = 0;
+    
+    (*qss).blueRow.arrayOfRolls[0] = 1;
+    (*qss).blueRow.arrayOfRolls[1] = 3;
+    (*qss).blueRow.arrayOfRolls[2] = 0;
+    (*qss).blueRow.arrayOfRolls[3] = 6;
+    (*qss).blueRow.arrayOfRolls[4] = 0;
+    (*qss).blueRow.arrayOfRolls[5] = 7;
+    (*qss).blueRow.arrayOfRolls[6] = 0;
+    (*qss).blueRow.arrayOfRolls[7] = 0;
+    (*qss).blueRow.arrayOfRolls[8] = 10;
+    (*qss).blueRow.arrayOfRolls[9] = 0;
+    
+    cout << (*qss).calcTotal() << endl;
     cout << *qss << endl;
+   
     return 0;
 }
 #endif

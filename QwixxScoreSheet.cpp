@@ -15,9 +15,26 @@
 
 #ifdef TEST_QWIXXSCORESHEET
 int main() {
-    QwixxScoreSheet* qxss;
-    qxss = new QwixxScoreSheet();
-    cout << *qxss << endl;
+    Dice D1 = {Colour::WHITE, 6};
+    Dice D2 = {Colour::RED, 6};
+    Dice D3 = {Colour::BLUE, 5};
+    
+    RollOfDice rd;
+    RollOfDice rd1;
+    rd.diceVec.push_back(D1);
+    rd.diceVec.push_back(D2);
+    rd1.diceVec.push_back(D1);
+    rd1.diceVec.push_back(D3);
+    
+    
+    
+    QwixxScoreSheet qxss = QwixxScoreSheet();
+    qxss.numberOfFailedThrows = 4;
+    qxss.playerName = "Jordan";
+    qxss.score(rd, Colour::RED, rd - 2);
+    qxss.score(rd1, Colour::BLUE, rd1 - 2);
+    qxss.calcTotal();
+    cout << qxss << endl;
     return 0;
 }
 #endif
