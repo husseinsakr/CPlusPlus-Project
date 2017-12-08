@@ -109,8 +109,7 @@ int main() {
                 activeUser = (activeUser+1) % numberOfPlayers;
             }
         }
-        //NEED TO FIX THIS
-        int maxScore = 0, positionOfWinnderInArray = 0;
+        int maxScore = -100, positionOfWinnderInArray = 0;
         for (int k = 0; k < numberOfPlayers; k++){
             qwintoPlayers[k].qss.setTotal();
             if (maxScore < qwintoPlayers[k].qss.overallScore){
@@ -142,8 +141,7 @@ int main() {
                 activeUser = (activeUser+1) % numberOfPlayers;
             }
         }
-        //NEED TO FIX THIS
-        int maxScore = 0, positionOfWinnderInArray = 0;
+        int maxScore = -100, positionOfWinnderInArray = 0;
         for (int k = 0; k < numberOfPlayers; k++){
             qwixxPlayers[k].qxss.setTotal();
             if (maxScore < qwixxPlayers[k].qxss.overallScore){

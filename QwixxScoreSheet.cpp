@@ -69,7 +69,6 @@ bool QwixxScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int positi
 }
     
 int QwixxScoreSheet::calcTotal() {
-    int result = 0; //score to be returned
     int pointCounter = 0; //for adding points to overall
     int entryCounter = 0; //for determining if you have to add 1 more for a lock
     bool lockTrack = false; //tracking if the final element in the row has been added
@@ -136,8 +135,8 @@ int QwixxScoreSheet::calcTotal() {
         pointCounter++;
         overallScore += pointCounter;
     }
-    result = overallScore - (5*numberOfFailedThrows);
-    return result;
+    overallScore -= (numberOfFailedThrows * 5);
+    return overallScore;
 }
     
     //enters score returns booleans indicating if the dice can be scored
