@@ -133,10 +133,10 @@ int main() {
                 }
             }
             qwixxPlayers[activeUser++].isActive = true; //sets player to active
-            diceRolled = qwixxPlayers[activeUser - 1].inputBeforeRoll(dice); //getting input from active user
+            dice = qwixxPlayers[activeUser - 1].inputBeforeRoll(dice); //getting input from active user
             for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
                 if(j != (activeUser - 1)){
-                    qwixxPlayers[j].inputAfterRoll(diceRolled);
+                    qwixxPlayers[j].inputAfterRoll(dice);
                 }
             }
         }

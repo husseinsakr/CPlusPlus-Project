@@ -280,6 +280,24 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 string activeWantsToScoreAgain = "";
                 hasBeenScored++;
                 cout << "You scored! " << endl;
+                if(qxss.redRowLocked || qxss.yellowRowLocked || qxss.greenRowLocked || qxss.blueRowLocked){
+                    RollOfDice adjustRollOfDice;
+                    for (int i = 0; i < rollOfDice.diceVec.size(); i++){
+                        if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::RED))
+                            adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);
+                        else if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::YELLOW))
+                            adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);
+                        else if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::GREEN))
+                            adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);
+                        else if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::BLUE))
+                            adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);                
+                    }
+                    for (int j = 0; j < rollOfDice.diceVec.size(); j++)
+                        rollOfDice.diceVec.pop_back();
+
+                    for (int k = 0; k < adjustRollOfDice.diceVec.size(); k++)
+                        rollOfDice.diceVec.push_back(adjustRollOfDice.diceVec[k]);
+                }
                 if(hasBeenScored < 2 && isActive){
                     cout << "You have the option to score again(Yes or No)?" << endl;
                     cin >> activeWantsToScoreAgain;
@@ -316,5 +334,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     isActive = false; //player becomes inActive as he rolled
     return rollOfDice;
 }
+
+
 
 
