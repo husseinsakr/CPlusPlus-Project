@@ -24,6 +24,10 @@ public:
     QwixxRow<vector<int>, Colour::YELLOW> yellowRow;
     QwixxRow<list<int>, Colour::GREEN> greenRow;
     QwixxRow<list<int>, Colour::BLUE> blueRow;
+    bool redRowLocked = false;
+    bool yellowRowLocked = false;
+    bool greenRowLocked = false;
+    bool blueRowLocked = false;
     
     QwixxScoreSheet();
     bool validate(RollOfDice &rollOfDice, Colour colour, int position);

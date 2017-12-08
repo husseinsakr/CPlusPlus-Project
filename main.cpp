@@ -127,7 +127,7 @@ int main() {
         while (true){
             
             for(int i = 0; i < numberOfPlayers; i++){ //loop to check if game is over
-                if(!(qwixxPlayers[i].qxss)){ //if game is over break loop
+                if(!qwixxPlayers[i].qxss){ //if game is over break loop
                     cout << "Game is over!" << endl;
                     break;
                 }

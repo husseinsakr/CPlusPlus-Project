@@ -192,6 +192,7 @@ bool QwixxScoreSheet::operator! () {
 	}
 	if (elemCounter >= 5 && endRow) {
 		rowCounter++;
+                redRowLocked = true;
 	}
 	elemCounter = 0;
         endRow = false;
@@ -207,6 +208,7 @@ bool QwixxScoreSheet::operator! () {
 	
 	if (elemCounter >= 5 && endRow) {
 		rowCounter++;
+                yellowRowLocked = true;
 	}
 	elemCounter = 0;
         endRow = false;
@@ -220,6 +222,7 @@ bool QwixxScoreSheet::operator! () {
 	}
 	if (elemCounter >= 5 && endRow) {
 		rowCounter++;
+                greenRowLocked = true;
 	}
         elemCounter = 0;
         endRow = false;
@@ -233,6 +236,7 @@ bool QwixxScoreSheet::operator! () {
 	}
 	if (elemCounter >= 5 && endRow) {
 		rowCounter++;
+                blueRowLocked = true;
 	}
-	return (!numberOfFailedThrows == 4 || !rowCounter == 2); 
+	return (numberOfFailedThrows == 4 || rowCounter == 2); 
 }

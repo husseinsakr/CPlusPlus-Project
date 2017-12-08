@@ -48,7 +48,6 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     string askInactiveUserIfHeWantsToScore = "";
     string rowColourChosen = " ";
     Colour rowColourTypeChosen;
-    int indexToScoreIn = 0;
     string leaveRow = " ";
     int arrayOfDicePostionInVector[6]; //stores in order: RED, YELLOW, GREEN, BLUE, WHITEDICE1, WHITEDICE2
     
@@ -112,11 +111,14 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             canUserScore = canUserScoreWhiteAndWhite + canUserScoreColourWithWhite1 + canUserScoreColourWithWhite2;
             cout << "---------------------------------------------------------------------------"<<endl << endl;
             //
-            if (!canUserScore && isActive){  //if user can't score increment number of failed throws and break from while loop
+            if (!canUserScore && isActive && hasBeenScored == 0){  //if user can't score increment number of failed throws and break from while loop
                 cout << "Here is " << qxss.playerName << "'s scoresheet!" << endl << qxss
                         << "You can't score so you get a failed throw! To the next player!" << endl;
                 qxss.numberOfFailedThrows++;
                 break;
+            } else if(!canUserScore && isActive && hasBeenScored == 1) {
+                cout << "Here is " << qxss.playerName << "'s scoresheet!" << endl << qxss
+                        << "You can't score now but you already scored once! To the next player!" << endl;
             } else if (!canUserScore && !isActive){
                 cout << "Here is " << qxss.playerName << "'s scoresheet!" << endl << qxss
                         << "You can't score so on to the next player!" << endl;
