@@ -140,7 +140,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             cout << "You can only score with:"<<endl;
             if(!userScoredColourAndWhite && (canUserScoreColourWithWhite1 || canUserScoreColourWithWhite2))
                 cout << "\t1)A combination of a white and coloured dice" << endl;
-            if(canUserScoreWhiteAndWhite)
+            if(canUserScoreWhiteAndWhite && !userScoredWhiteCombination)
                 cout << "\t2)A combination of the white dice" << endl;
             cout << "Type their respective numbers(1,2): ";
             cin >> userChoseToScoreWith;
@@ -151,19 +151,19 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 // next, request user reinput
             }
             if (userChoseToScoreWith > 0 && userChoseToScoreWith < 3){
-                userChoseWhatToScore = true;
-                if(userChoseToScoreWith == 1)
-                    userScoredColourAndWhite = true;
-                else if(userChoseToScoreWith == 2)
-                    userScoredWhiteCombination = true;
-                    
+                
+                if(userChoseToScoreWith == 1 && !userScoredColourAndWhite){
+                    userChoseWhatToScore = true;
+                }else if(userChoseToScoreWith == 2 && !userScoredWhiteCombination){
+                    userChoseWhatToScore = true;
+                }
             } else { 
                 cout << "You can only choose the NUMBERS, type 1 or 2!" << endl;
             }
         }
         if (userDoesntWantToScore)
             break;
-        if (userChoseToScoreWith == 1){ //if the user chose to score with a combination of white and a colour dice get the dice he wants to use
+        if (userChoseToScoreWith == 1 && userChoseWhatToScore){ //if the user chose to score with a combination of white and a colour dice get the dice he wants to use
             cout << "Choose which white dice you want to use in the combination! Type First or Second!" << endl;
             string whiteDiceChosen = "";
             string colouredDiceChosen = "";
@@ -213,7 +213,6 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[whiteDice]]);
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[colouredDice]]);
-            userScoredColourAndWhite = true;
         }
         while(!rowColourChosenIsCorrect){ //asking user to choose a row colour
             cout << "You can only score in:";
@@ -254,9 +253,9 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 rowColourChosenIsCorrect = false;
                 break;
             } else {
-                string activeWantsToScoreAgain;
+                string activeWantsToScoreAgain = "";
                 hasBeenScored++;
-                cout << "You scored " << rollOfDiceToScore << "!" << endl;
+                cout << "You scored! " << endl;
                 if(hasBeenScored < 2 && isActive){
                     cout << "You have the option to score again(Yes or No)?" << endl;
                     cin >> activeWantsToScoreAgain;
@@ -266,12 +265,19 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                         rowColourChosenIsCorrect = false;
                         indexToScoreInIsCorrect = false;
                         break;
+                    } else {
+                        userDoesntWantToScore = true;
+                        break;
                     }
                 } else if(!isActive){
-                    hasBeenScored = 2;
+                    userDoesntWantToScore = true;
+                    break;
                 }
             }
         }
+        
+        if (userDoesntWantToScore)
+            break;
         
         if(hasBeenScored == 2){
             if(isActive)
