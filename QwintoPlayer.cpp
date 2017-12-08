@@ -111,7 +111,7 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     string arrayOfScorableColours[3];
     string rowColourChosen = " ";
     Colour rowColourTypeChosen;
-    int indexToScoreIn = 0;
+    int indexToScoreIn = 1000;
     string leaveRow = " ";
        
     //check the dice colours that was used in the rollOfDice and what can be scored
@@ -162,10 +162,12 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             cout << "Here is " << qss.playerName << "'s scoresheet!" << endl << qss
                     << "You can't score so on to the next player!" << endl;
             break;
+        } else {
+            cout << endl << "Here is your scoresheet!" << endl << qss;
         }
         
         while(!rowColourChosenIsCorrect){ //asking user to choose a row colour
-            cout << endl << "Here is your scoresheet!" << endl << qss;
+            
             
             cout << "You can only score in:";
             if (redCanBeScored)
@@ -207,6 +209,12 @@ RollOfDice QwintoPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
         while (!indexToScoreInIsCorrect){  //asking user for index
             cout << "Choose what index you want to place the sum of the rolls! Range: (0-9)" << endl;
             cin >> indexToScoreIn;
+            if(!cin){
+                // user didn't input a number
+                cin.clear(); // reset failbit
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); //skip bad input
+                // next, request user reinput
+            }
             if (indexToScoreIn >= 0 && indexToScoreIn < 10)
                 indexToScoreInIsCorrect = qss.score(rollOfDice, rowColourTypeChosen, indexToScoreIn);
             else

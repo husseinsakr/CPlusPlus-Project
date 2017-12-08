@@ -34,11 +34,30 @@ RollOfDice RollOfDice::pair(Dice one, Dice two) {
 ostream &operator<< (ostream& os, RollOfDice& rd) {
 	int i = 1;
         int score = 0;
+        string diceColour;
+        
 	for (Dice d : rd.diceVec) {
-		os << "Dice " << i << " rolled: " << d.face << endl;
-                score += d.face;
-		i++;
+            switch(d.colour){
+                case Colour::RED:
+                    diceColour = "Red";
+                break;
+                case Colour::YELLOW:
+                    diceColour = "Yellow";
+                break;
+                case Colour::GREEN:
+                    diceColour = "Green";
+                break;
+                case Colour::BLUE:
+                    diceColour = "Blue";
+                break;
+                case Colour::WHITE:
+                    diceColour = "White";
+                break;
+            }
+            os << "Dice " << i << " with colour " << diceColour << " rolled: " << d.face << endl;
+            score += d.face;
+            i++;
 	}
-        os << "You have to score: " << score << endl;
+        os << "You have to score: " << score << " in qwinto!"<< endl;
 	return os;
 }
