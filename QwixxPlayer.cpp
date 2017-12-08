@@ -213,6 +213,9 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[whiteDice]]);
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[colouredDice]]);
+        } else {
+            rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[4]]);
+            rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[5]]);
         }
         while(!rowColourChosenIsCorrect){ //asking user to choose a row colour
             cout << "You can only score in:";
@@ -264,6 +267,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                         userChoseWhatToScore = false;
                         rowColourChosenIsCorrect = false;
                         indexToScoreInIsCorrect = false;
+                        verificationPassed = false;
                         break;
                     } else {
                         userDoesntWantToScore = true;
@@ -275,6 +279,9 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 }
             }
         }
+        
+        rollOfDiceToScore.diceVec.pop_back();
+        rollOfDiceToScore.diceVec.pop_back();
         
         if (userDoesntWantToScore)
             break;
