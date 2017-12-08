@@ -124,24 +124,26 @@ int main() {
                 << "! You are the winner of this game with " << qwintoPlayers[positionOfWinnderInArray].qss.overallScore << " points!"<<endl; 
         
     } else {
-        while (true){
-            
+        while (!gameIsOver){
             for(int i = 0; i < numberOfPlayers; i++){ //loop to check if game is over
                 if(!qwixxPlayers[i].qxss){ //if game is over break loop
-                    cout << "Game is over!" << endl;
-                    break;
+                    cout << "Game is over! Here are your scoresheets!" << endl << endl;
+                    gameIsOver = true;
                 }
             }
-            qwixxPlayers[activeUser++].isActive = true; //sets player to active
-            dice = qwixxPlayers[activeUser - 1].inputBeforeRoll(dice); //getting input from active user
-            for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
-                if(j != (activeUser - 1)){
-                    dice = qwixxPlayers[j].inputAfterRoll(dice);
+            if(!gameIsOver){
+                qwixxPlayers[activeUser].isActive = true; //sets player to active
+                diceRolled = qwixxPlayers[activeUser].inputBeforeRoll(dice); //getting input from active user
+                for (int j = 0; j < numberOfPlayers; j++){ //looping over nonactive users after roll to score in their scoresheet if they want
+                    if(j != (activeUser)){
+                        diceRolled = qwixxPlayers[j].inputAfterRoll(diceRolled);
+                    }
                 }
+                activeUser = (activeUser+1) % numberOfPlayers;
             }
         }
-        
-        int maxScore = 0, positionOfWinnderInArray;
+        //NEED TO FIX THIS
+        int maxScore = 0, positionOfWinnderInArray = 0;
         for (int k = 0; k < numberOfPlayers; k++){
             qwixxPlayers[k].qxss.setTotal();
             if (maxScore < qwixxPlayers[k].qxss.overallScore){
@@ -152,7 +154,9 @@ int main() {
         }
         
         cout << "Congratulations " << qwixxPlayers[positionOfWinnderInArray].qxss.playerName
-                << "! You are the winner of this game!" << endl; 
+                << "! You are the winner of this game with " << qwixxPlayers[positionOfWinnderInArray].qxss.overallScore << " points!"<<endl; 
+            
+           
     }
     
     
