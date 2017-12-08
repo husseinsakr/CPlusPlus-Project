@@ -45,7 +45,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     bool userScoredWhiteCombination = false;
     RollOfDice rollOfDiceToScore;
     int userChoseToScoreWith = 0;
-    string askInactiveUserIfHeWantsToScore = "";
+    string askInactiveUserIfHeWantsToScore = " ";
     string rowColourChosen = " ";
     Colour rowColourTypeChosen;
     string leaveRow = " ";
@@ -138,14 +138,16 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                     userDoesntWantToScore = true;
                     break;
                 }
-            } 
+            }
+            if (userDoesntWantToScore)
+                break;
             cout << "You can only score with:"<<endl;
             if(!userScoredColourAndWhite && (canUserScoreColourWithWhite1 || canUserScoreColourWithWhite2))
                 cout << "\t1)A combination of a white and coloured dice" << endl;
             if(canUserScoreWhiteAndWhite && !userScoredWhiteCombination)
                 cout << "\t2)A combination of the white dice" << endl;
             cout << "\t3)Take a failed throw" << endl;
-            cout << "Type their respective numbers(1,2): ";
+            cout << "Type their respective numbers(1,2,3): ";
             cin >> userChoseToScoreWith;
             if(!cin){
                 // user didn't input a number
