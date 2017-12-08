@@ -58,6 +58,6 @@ ostream &operator<< (ostream& os, RollOfDice& rd) {
             score += d.face;
             i++;
 	}
-        os << "You have to score: " << score << " in qwinto!"<< endl;
+        os << "You have to score: " << score << " if you are in qwinto!"<< endl;
 	return os;
 }

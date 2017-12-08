@@ -39,26 +39,30 @@ bool QwixxScoreSheet::validate(RollOfDice &rollOfDice, Colour colour, int positi
         case Colour::RED:
             if (find(this->redRow.container.begin(),this->redRow.container.end(), rd) != this->redRow.container.end()) {
                 result = false;
+            } else{
+                result = true;   
             }
-            result = true;     
         break;
         case Colour::YELLOW:
             if (find(this->yellowRow.container.begin(),this->yellowRow.container.end(), rd) != this->yellowRow.container.end()) {
                 result = false;
+            } else {
+                result = true; 
             }
-            result = true; 
         break;
         case Colour::GREEN:
             if (find(this->greenRow.container.begin(),this->greenRow.container.end(), rd) != this->greenRow.container.end()) {
                 result = false;
+            }else{
+                result = true; 
             }
-            result = true; 
         break;
         case Colour::BLUE:
             if (find(this->blueRow.container.begin(),this->blueRow.container.end(), rd) != this->blueRow.container.end()) {
                 result = false;
+            } else {
+                result = true; 
             }
-            result = true; 
         break;        
     }
     return result;
@@ -138,6 +142,7 @@ int QwixxScoreSheet::calcTotal() {
     
     //enters score returns booleans indicating if the dice can be scored
 bool QwixxScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position) {
+    bool result;
     list<int>::iterator lFront; //list iterator for green and blue rows
     int rd = static_cast<int>(rollOfDice);
     //if the roll is validated and unique, goes to that position in the row
@@ -146,28 +151,28 @@ bool QwixxScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position)
         switch (colour) {
             case Colour::RED:
                 this->redRow.container.at(position) += rollOfDice;
-                return true;
+                result = true;
             break;
             case Colour::YELLOW:
                 this->yellowRow.container.at(position) += rollOfDice;
-                return true;
+                result = true;
             break;
             //insertion process different for list, need to use iterator and insert
             case Colour::GREEN:
                 lFront = this->greenRow.container.begin();
                 advance(lFront, position);
                 this->greenRow.container.insert(lFront, rd);
-                return true;
+                result =  true;
             break;
             case Colour::BLUE:
                 lFront = this->blueRow.container.begin();
                 advance(lFront, position);
                 this->blueRow.container.insert(lFront, rd);
-                return true;
+                result =  true;
             break;
         }
     }
-    return false; 
+    return result; 
 }
 
 bool QwixxScoreSheet::operator! () {
