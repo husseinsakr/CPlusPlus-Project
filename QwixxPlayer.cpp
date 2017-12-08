@@ -197,15 +197,19 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 transform(colouredDiceChosen.begin(),colouredDiceChosen.end(), colouredDiceChosen.begin(), ::tolower);
                 if(colouredDiceChosen == "red"){
                     colouredDice = 0;
+                    rowColourChosenIsCorrect = true;
                     break;
                 } else if (colouredDiceChosen == "yellow"){
                     colouredDice = 1;
+                    rowColourChosenIsCorrect = true;
                     break;
                 } else if (colouredDiceChosen == "green"){
                     colouredDice = 2;
+                    rowColourChosenIsCorrect = true;
                     break;
                 } else if (colouredDiceChosen == "blue"){
                     colouredDice = 3;
+                    rowColourChosenIsCorrect = true;
                     break;
                 } else {
                     cout << "Choose which coloured dice you want to use in the combination! Type Red, Yellow, Green, or Blue!" << endl;
