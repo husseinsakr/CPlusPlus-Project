@@ -133,8 +133,6 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 transform(askInactiveUserIfHeWantsToScore.begin(),askInactiveUserIfHeWantsToScore.end(),
                         askInactiveUserIfHeWantsToScore.begin(), ::tolower);
                 if(askInactiveUserIfHeWantsToScore == "no"){
-                    indexToScoreInIsCorrect = true;
-                    rowColourChosenIsCorrect = true;
                     userDoesntWantToScore = true;
                     break;
                 }
@@ -143,7 +141,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             if(!userScoredColourAndWhite && (canUserScoreColourWithWhite1 || canUserScoreColourWithWhite2))
                 cout << "\t1)A combination of a white and coloured dice" << endl;
             if(canUserScoreWhiteAndWhite)
-                cout << "\t1)A combination of the white dice" << endl;
+                cout << "\t2)A combination of the white dice" << endl;
             cout << "Type their respective numbers(1,2): ";
             cin >> userChoseToScoreWith;
             if(!cin){
@@ -163,6 +161,8 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cout << "You can only choose the NUMBERS, type 1 or 2!" << endl;
             }
         }
+        if (userDoesntWantToScore)
+            break;
         if (userChoseToScoreWith == 1){ //if the user chose to score with a combination of white and a colour dice get the dice he wants to use
             cout << "Choose which white dice you want to use in the combination! Type First or Second!" << endl;
             string whiteDiceChosen = "";
@@ -248,35 +248,15 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
         }
         
         while (!indexToScoreInIsCorrect){  //asking user for index
-            cout << "Choose what index you want to score the sum of the rolls! Range: (0-9)" << endl;
-            cin >> indexToScoreIn;
-            if(!cin){
-                // user didn't input a number
-                cin.clear(); // reset failbit
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); //skip bad input
-                // next, request user reinput
-            }
-            if (indexToScoreIn >= 0 && indexToScoreIn < 10)
-                indexToScoreInIsCorrect = qxss.score(rollOfDiceToScore, rowColourTypeChosen, indexToScoreIn);
-            else
-                cout << "You can't score there!" << endl;
-            if(!indexToScoreInIsCorrect && (redCanBeScored + yellowCanBeScored + blueCanBeScored) > 1){
-                cout << "Would you like to leave row? Type Yes or No:" << endl;
-                cin >> leaveRow;
-                transform(leaveRow.begin(),leaveRow.end(), leaveRow.begin(), ::tolower);
-                if (leaveRow == "yes") {
-                    rowColourChosenIsCorrect = false;
-                    break;
-                }
-            }
-        }
-        while(true){
-            if(indexToScoreInIsCorrect){
+            indexToScoreInIsCorrect = qxss.score(rollOfDiceToScore, rowColourTypeChosen, rollOfDiceToScore - 2);
+            if(!indexToScoreInIsCorrect){
+                cout << "You couldn't score here! Leaving row!" << endl;
+                rowColourChosenIsCorrect = false;
+                break;
+            } else {
                 string activeWantsToScoreAgain;
                 hasBeenScored++;
-                if(userDoesntWantToScore)
-                    break;
-                cout << "You have scored in index " << indexToScoreIn << "!" << endl;
+                cout << "You scored " << rollOfDiceToScore << "!" << endl;
                 if(hasBeenScored < 2 && isActive){
                     cout << "You have the option to score again(Yes or No)?" << endl;
                     cin >> activeWantsToScoreAgain;
@@ -287,18 +267,12 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                         indexToScoreInIsCorrect = false;
                         break;
                     }
+                } else if(!isActive){
+                    hasBeenScored = 2;
                 }
-                break;
-            } else {
-                if (userChoseToScoreWith == 1)
-                    userScoredColourAndWhite = false;
-                else if (userChoseToScoreWith == 2)
-                    userScoredWhiteCombination = false;
-                userChoseWhatToScore= false;
-                rowColourChosenIsCorrect = false;
-                break;
             }
         }
+        
         if(hasBeenScored == 2){
             if(isActive)
                 cout << "Inactive players are allowed to score now!" << endl;
