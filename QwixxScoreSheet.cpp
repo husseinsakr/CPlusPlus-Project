@@ -11,6 +11,16 @@
  */
 
 #include "QwixxScoreSheet.h"
+//#define TEST_QWIXXSCORESHEET
+
+#ifdef TEST_QWIXXSCORESHEET
+int main() {
+    QwixxScoreSheet* qxss;
+    qxss = new QwixxScoreSheet();
+    cout << *qxss << endl;
+    return 0;
+}
+#endif
 
 QwixxScoreSheet::QwixxScoreSheet() {
     redRow = QwixxRow<vector<int>, Colour::RED>();

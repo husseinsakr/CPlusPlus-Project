@@ -11,6 +11,16 @@
  */
 
 #include "QwintoScoreSheet.h"
+//#define TEST_QWINTOSCORESHEET
+
+#ifdef TEST_QWINTOSCORESHEET
+int main() {
+    QwintoScoreSheet* qss;
+    qss = new QwintoScoreSheet();
+    cout << *qss << endl;
+    return 0;
+}
+#endif
 
 //ostream& operator<< (ostream &os, const QwintoScoreSheet &obj){
     //return obj.doprint(os);
