@@ -45,7 +45,6 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     bool userScoredWhiteCombination = false;
     RollOfDice rollOfDiceToScore;
     int userChoseToScoreWith = 0;
-    RollOfDice initialRollOfDice = rollOfDice;
     string askInactiveUserIfHeWantsToScore = " ";
     string rowColourChosen = " ";
     Colour rowColourTypeChosen;
@@ -125,7 +124,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             } else {
                 verificationPassed = true;
                 if (!isActive)
-                    cout << "Here is the dice again: " << endl << initialRollOfDice << endl;
+                    cout << "Here is the dice that can be scored: " << endl << rollOfDice << endl;
                 cout << endl << "Here is your scoresheet!" << endl << qxss;
             }
         }
@@ -307,7 +306,24 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                         else if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::GREEN))
                             adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);
                         else if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::BLUE))
-                            adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);                
+                            adjustRollOfDice.diceVec.push_back(rollOfDice.diceVec[i]);
+                        else {
+                            switch(rollOfDice.diceVec[i].colour){
+                                case Colour::RED:
+                                    cout << "Red row has been locked and red dice removed!" << endl;
+                                break;
+                                case Colour::YELLOW:
+                                    cout << "Yellow row has been locked and yellow dice removed!" << endl;
+                                break;
+                                case Colour::GREEN:
+                                    cout << "Green row has been locked and green dice removed!" << endl;
+                                break;
+                                case Colour::BLUE:
+                                    cout << "Blue row has been locked and blue dice removed!" << endl;
+                                break;
+                            }
+                        }
+                            
                     }
                     for (int j = 0; j < rollOfDice.diceVec.size(); j++)
                         rollOfDice.diceVec.pop_back();
