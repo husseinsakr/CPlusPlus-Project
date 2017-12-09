@@ -17,7 +17,9 @@
 int main() {
     Dice D1 = {Colour::WHITE, 6};
     Dice D2 = {Colour::RED, 6};
-    Dice D3 = {Colour::BLUE, 5};
+    Dice D3 = {Colour::BLUE, 2};
+    Dice D4 = {Colour::RED, 2};
+    Dice D5 = {Colour::BLUE, 6};
     
     RollOfDice rd;
     RollOfDice rd1;
@@ -27,10 +29,14 @@ int main() {
     rd1.diceVec.push_back(D3);
     
     
-    
     QwixxScoreSheet qxss = QwixxScoreSheet();
     qxss.numberOfFailedThrows = 4;
     qxss.playerName = "Jordan";
+    qxss.score(rd, Colour::RED, rd - 2);
+    qxss.score(rd1, Colour::BLUE, rd1 - 2);
+    //testing to make sure it doesnt score to the left in a row
+    rd = rd.pair(D1, D4);
+    rd1 = rd1.pair(D1, D5);
     qxss.score(rd, Colour::RED, rd - 2);
     qxss.score(rd1, Colour::BLUE, rd1 - 2);
     qxss.calcTotal();
@@ -159,6 +165,7 @@ int QwixxScoreSheet::calcTotal() {
     //enters score returns booleans indicating if the dice can be scored
 bool QwixxScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position) {
     bool result;
+    bool canInsert = true;
     list<int>::iterator lFront; //list iterator for green and blue rows
     int rd = static_cast<int>(rollOfDice);
     //if the roll is validated and unique, goes to that position in the row
@@ -166,24 +173,57 @@ bool QwixxScoreSheet::score(RollOfDice &rollOfDice, Colour colour, int position)
     if (validate(rollOfDice, colour, position)) {
         switch (colour) {
             case Colour::RED:
-                this->redRow.container.at(position) += rollOfDice;
+                //scanning to see if there is an element to the left in the row
+                for (int i = position; i < redRow.container.size(); i++) {
+                    if (redRow.container.at(i) != 0) {
+                        canInsert = false;
+                    }
+                }
+                if (canInsert) {
+                    this->redRow.container.at(position) += rollOfDice;
+                }
                 result = true;
             break;
             case Colour::YELLOW:
-                this->yellowRow.container.at(position) += rollOfDice;
+                //left check loop
+                for (int i = position; i < yellowRow.container.size(); i++) {
+                    if (yellowRow.container.at(i) != 0) {
+                        canInsert = false;
+                    }
+                }
+                if (canInsert) {
+                    this->yellowRow.container.at(position) += rollOfDice;
+                }
                 result = true;
             break;
             //insertion process different for list, need to use iterator and insert
             case Colour::GREEN:
                 lFront = this->greenRow.container.begin();
                 advance(lFront, position);
-                this->greenRow.container.insert(lFront, rd);
+                //left check loop different method because lists dont have random
+                //access
+                for (auto x = lFront; x != greenRow.container.begin(); x--) {
+                    if (*x != 0) {
+                        canInsert = false;
+                    }
+                }
+                if (canInsert) {
+                    this->greenRow.container.insert(lFront, rd);
+                }
                 result =  true;
             break;
             case Colour::BLUE:
                 lFront = this->blueRow.container.begin();
                 advance(lFront, position);
-                this->blueRow.container.insert(lFront, rd);
+                //left check loop
+                for (auto x = lFront; x != blueRow.container.begin(); x--) {
+                    if (*x != 0) {
+                        canInsert = false;
+                    }
+                }
+                if (canInsert) {
+                    this->blueRow.container.insert(lFront, rd);
+                }
                 result =  true;
             break;
         }
