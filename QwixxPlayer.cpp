@@ -74,9 +74,9 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
         }
     }
     
-    while (hasBeenScored < 2){
+    while (hasBeenScored < 2){ //used as integer for giving user ability to score again
         
-        if(!verificationPassed){
+        if(!verificationPassed){ //verifies if the user can score this round, if not passed and user is Active. He gets a failed throw else ends his round
             cout << "--------------Verifying if you can even score! Please Ignore --------------"<<endl;
             RollOfDice pairOfWhiteDice = rollOfDice.pair(rollOfDice.diceVec[arrayOfDicePostionInVector[4]], rollOfDice.diceVec[arrayOfDicePostionInVector[5]]);
             if(redCanBeScored) {
@@ -128,7 +128,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cout << endl << "Here is your scoresheet!" << endl << qxss;
             }
         }
-        while(!userChoseWhatToScore){
+        while(!userChoseWhatToScore){ //get what option of scoring the user wants
             if (!isActive){
                 cout << "Would you like to score at all this turn(Yes or No)?" << endl;
                 cin >> askInactiveUserIfHeWantsToScore;
@@ -171,7 +171,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 cout << "You can only choose the NUMBERS, type 1 or 2!" << endl;
             }
         }
-        if (userDoesntWantToScore)
+        if (userDoesntWantToScore) //to end the round if the user is not active and doesnt want to score
             break;
         if (userChoseToScoreWith == 1 && userChoseWhatToScore){ //if the user chose to score with a combination of white and a colour dice get the dice he wants to use
             cout << "Choose which white dice you want to use in the combination! Type First or Second!" << endl;
@@ -202,7 +202,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 }
             }
             cout << "Choose which coloured dice you want to use in the combination! Type Red, Yellow, Green, or Blue!" << endl;
-            while(true){
+            while(true){ //ask user to choose which coloured dice he wants to use
                 cin >> colouredDiceChosen;
                 transform(colouredDiceChosen.begin(),colouredDiceChosen.end(), colouredDiceChosen.begin(), ::tolower);
                 if(colouredDiceChosen == "red"){
@@ -225,10 +225,12 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                     cout << "Choose which coloured dice you want to use in the combination! Type Red, Yellow, Green, or Blue!" << endl;
                 }
             }
-            rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[whiteDice]]);
+            //make a new rollOfDice to score
+            rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[whiteDice]]); 
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[colouredDice]]);
             rowColourTypeChosen = rollOfDice.diceVec[arrayOfDicePostionInVector[colouredDice]].colour;
         } else {
+            //make a new rollOfDice to score
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[4]]);
             rollOfDiceToScore.diceVec.push_back(rollOfDice.diceVec[arrayOfDicePostionInVector[5]]);
             cout << "You have to score " << rollOfDiceToScore.diceVec[0].face + rollOfDiceToScore.diceVec[1].face << " in a coloured row!" << endl;
@@ -293,7 +295,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 string activeWantsToScoreAgain = "";
                 hasBeenScored++;
                 cout << "You scored! " << endl;
-                if(qxss.redRowLocked || qxss.yellowRowLocked || qxss.greenRowLocked || qxss.blueRowLocked){
+                if(qxss.redRowLocked || qxss.yellowRowLocked || qxss.greenRowLocked || qxss.blueRowLocked){ //if row gets locked than remove the dice of respective colour
                     RollOfDice adjustRollOfDice;
                     for (int i = 0; i < rollOfDice.diceVec.size(); i++){
                         if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::RED))
@@ -338,7 +340,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
         if (userDoesntWantToScore)
             break;
         
-        if(hasBeenScored == 2){
+        if(hasBeenScored == 2){ //if active user finished scoring
             if(isActive)
                 cout << "Inactive players are allowed to score now!" << endl;
             break;

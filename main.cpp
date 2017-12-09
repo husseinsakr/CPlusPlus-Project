@@ -109,6 +109,7 @@ int main() {
                 activeUser = (activeUser+1) % numberOfPlayers;
             }
         }
+        //getting winner
         int maxScore = -100, positionOfWinnderInArray = 0;
         for (int k = 0; k < numberOfPlayers; k++){
             qwintoPlayers[k].qss.setTotal();
@@ -141,6 +142,7 @@ int main() {
                 activeUser = (activeUser+1) % numberOfPlayers;
             }
         }
+        //getting winner
         int maxScore = -100, positionOfWinnderInArray = 0;
         for (int k = 0; k < numberOfPlayers; k++){
             qwixxPlayers[k].qxss.setTotal();
