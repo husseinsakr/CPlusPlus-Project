@@ -140,11 +140,12 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             if (userDoesntWantToScore)
                 break;
             cout << "You can only score with:"<<endl;
-            if(!userScoredColourAndWhite && (canUserScoreColourWithWhite1 || canUserScoreColourWithWhite2))
+            if(!userScoredColourAndWhite && (canUserScoreColourWithWhite1 || canUserScoreColourWithWhite2) && isActive)
                 cout << "\t1)A combination of a white and coloured dice" << endl;
             if(canUserScoreWhiteAndWhite && !userScoredWhiteCombination)
                 cout << "\t2)A combination of the white dice" << endl;
-            cout << "\t3)Take a failed throw" << endl;
+            if(isActive)
+                cout << "\t3)Take a failed throw" << endl;
             cout << "Type their respective numbers(1,2,3): ";
             cin >> userChoseToScoreWith;
             if(!cin){
@@ -155,11 +156,11 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
             }
             if (userChoseToScoreWith > 0 && userChoseToScoreWith < 4){
                 
-                if(userChoseToScoreWith == 1 && !userScoredColourAndWhite){
+                if(userChoseToScoreWith == 1 && !userScoredColourAndWhite && isActive){
                     userChoseWhatToScore = true;
                 }else if(userChoseToScoreWith == 2 && !userScoredWhiteCombination){
                     userChoseWhatToScore = true;
-                } else if(userChoseToScoreWith == 3){
+                } else if(userChoseToScoreWith == 3 && isActive){
                     userDoesntWantToScore = true;
                     qxss.numberOfFailedThrows++;
                     cout << "You received a fail throw" << endl;
