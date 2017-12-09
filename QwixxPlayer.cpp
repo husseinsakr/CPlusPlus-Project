@@ -45,6 +45,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     bool userScoredWhiteCombination = false;
     RollOfDice rollOfDiceToScore;
     int userChoseToScoreWith = 0;
+    RollOfDice initialRollOfDice = rollOfDice;
     string askInactiveUserIfHeWantsToScore = " ";
     string rowColourChosen = " ";
     Colour rowColourTypeChosen;
@@ -123,6 +124,8 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 break;
             } else {
                 verificationPassed = true;
+                if (!isActive)
+                    cout << "Here is the dice again: " << endl << initialRollOfDice << endl;
                 cout << endl << "Here is your scoresheet!" << endl << qxss;
             }
         }
