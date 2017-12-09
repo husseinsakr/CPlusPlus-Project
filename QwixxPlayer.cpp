@@ -297,7 +297,7 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 string activeWantsToScoreAgain = "";
                 hasBeenScored++;
                 cout << "You scored! " << endl;
-                if(qxss.redRowLocked || qxss.yellowRowLocked || qxss.greenRowLocked || qxss.blueRowLocked){ //if row gets locked than remove the dice of respective colour
+                if((qxss.redRowLocked || qxss.yellowRowLocked || qxss.greenRowLocked || qxss.blueRowLocked) && isActive){ //if row gets locked than remove the dice of respective colour
                     RollOfDice adjustRollOfDice;
                     for (int i = 0; i < rollOfDice.diceVec.size(); i++){
                         if(!qxss.redRowLocked && !(rollOfDice.diceVec[i].colour == Colour::RED))
