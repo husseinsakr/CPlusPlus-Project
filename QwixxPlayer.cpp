@@ -77,7 +77,6 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
     while (hasBeenScored < 2){ //used as integer for giving user ability to score again
         
         if(!verificationPassed){ //verifies if the user can score this round, if not passed and user is Active. He gets a failed throw else ends his round
-            cout << "--------------Verifying if you can even score! Please Ignore --------------"<<endl;
             RollOfDice pairOfWhiteDice = rollOfDice.pair(rollOfDice.diceVec[arrayOfDicePostionInVector[4]], rollOfDice.diceVec[arrayOfDicePostionInVector[5]]);
             if(redCanBeScored) {
                 RollOfDice rollOfDicePairedWithWhite1 = rollOfDice.pair(rollOfDice.diceVec[arrayOfDicePostionInVector[0]], rollOfDice.diceVec[arrayOfDicePostionInVector[4]]);
@@ -109,7 +108,6 @@ RollOfDice QwixxPlayer::inputAfterRoll(RollOfDice &rollOfDice) {
                 canUserScoreWhiteAndWhite = qxss.validate(pairOfWhiteDice, Colour::BLUE, pairOfWhiteDice - 2);
             }
             canUserScore = canUserScoreWhiteAndWhite + canUserScoreColourWithWhite1 + canUserScoreColourWithWhite2;
-            cout << "---------------------------------------------------------------------------"<<endl << endl;
             //
             if (!canUserScore && isActive && hasBeenScored == 0){  //if user can't score increment number of failed throws and break from while loop
                 cout << "Here is " << qxss.playerName << "'s scoresheet!" << endl << qxss
